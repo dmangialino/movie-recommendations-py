@@ -1,0 +1,5 @@
+python-dotenv 
+sendgrid==6.6.0
+
+pygsheets
+
