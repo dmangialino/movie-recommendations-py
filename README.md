@@ -4,7 +4,7 @@
 
 Setup a virtual environment using the below command:
 ```sh
-conda create -n movie-recs python=3.8
+conda create -n movie-recs-env python=3.8
 
 ```
 
