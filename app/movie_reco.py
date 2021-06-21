@@ -35,52 +35,54 @@ for movie in movies:
 ########## FOREIGN / US FILMS ##########
 
 # Foreign films
-#foreign_film = input("Would you prefer a foreign or US film? Enter '1' for foreign film, '2' for US film, or '3' for no preference ")
+foreign_film = input("Would you prefer a foreign or US film? Enter '1' for foreign film, '2' for US film, or '3' for no preference ")
 
 # Add user input validation
-# Logic can be if "USA" in movie["country"] for US film or not for a foreign film
-#matching_country = []
+# Logic can be movie["original_language"]=="en" for US film or not "en" for a foreign film
 
-#if(foreign_film=="1"):
-#    print("Foreign film")
-#    for movie in matching_genre:
-#        if("USA" not in movie["country"]):
-#            matching_country.append(movie)
-#elif(foreign_film=="2"):
-#    print("US film")
-#    for movie in matching_genre:
-#       if("USA" in movie["country"]):
-#            matching_country.append(movie)
-#elif(foreign_film=="3"):
-#    print("Either foreign or US film")
-#    for movie in matching_genre:
-#        matching_country.append(movie)
-#else:
-#    print("Issue processing user input. Will proceed with both foreign and US films.")
-#    for movie in matching_genre:
-#        matching_country.append(movie)
+matching_country = []
 
-#for movie in matching_country:
-#    print(movie["title"])
+if(foreign_film=="1"):
+    print("Foreign film")
+    for movie in matching_genre:
+        if(movie["original_language"] != "en"):
+            matching_country.append(movie)
+elif(foreign_film=="2"):
+    print("US film")
+    for movie in matching_genre:
+       if(movie["original_language"] == "en"):
+            matching_country.append(movie)
+elif(foreign_film=="3"):
+    print("Either foreign or US film")
+    for movie in matching_genre:
+        matching_country.append(movie)
+else:
+    print("Issue processing user input. Will proceed with both foreign and US films.")
+    for movie in matching_genre:
+        matching_country.append(movie)
+
+for movie in matching_country:
+    print(movie["title"])
+
 
 ########## MOVIE LENGTH ##########
 
 # Further narrow by time
-#length = input("Approximately how long should the movie be? Please enter '1' for 60 mins, '2' for 90 mins, '3' for 120 mins, or '4' for any ")
+length = input("Approximately how long should the movie be? Please enter '1' for 60 mins, '2' for 90 mins, '3' for 120 mins, or '4' for any ")
 
 # Input validation
-# Logic
+# Logic based on movie["runtime"]
 
-#if(length=="1"):
-#    print("60 mins")
-#elif(length=="2"):
-#    print("90 mins")
-#elif(length=="3"):
-#    print("120 mins")
-#elif(length=="4"):
-#    print("any")
-#else:
-#    print("Issue processing user input. Will proceed with any length.")
+if(length=="1"):
+    print("60 mins")
+elif(length=="2"):
+    print("90 mins")
+elif(length=="3"):
+    print("120 mins")
+elif(length=="4"):
+    print("any")
+else:
+    print("Issue processing user input. Will proceed with any length.")
 
 
 ########## OLD VS. NEW MOVIES ##########
@@ -89,7 +91,6 @@ for movie in movies:
 # Get input
 
 # Input Validation
-
 # Logic
 
 
