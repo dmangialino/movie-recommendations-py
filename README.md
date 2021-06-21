@@ -11,7 +11,7 @@ conda create -n movie-recs-env python=3.8
 Then activate the virtual environment using the below command:
 
 ``` 
-conda activate movie_recs-env
+conda activate movie-recs-env
 ```
 
 
@@ -21,7 +21,9 @@ conda activate movie_recs-env
 ```
 pip install -r requirements.txt
 
-pip install git+https://github.com/alberanid/imdbpy
-
 ```
->>>>>>> main
+
+
+# Movie Data
+
+Movie dataset from Kaggle, based on The Movie Database (TMDb) data: https://www.kaggle.com/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv
