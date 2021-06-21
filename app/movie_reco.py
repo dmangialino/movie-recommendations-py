@@ -94,10 +94,11 @@ else:
 # Logic
 
 
-########## SELECT RANDOM TITLE FROM LIST OF ALL MOVIES THAT MEET CRITERIA ##########
+########## SELECT  TITLE FROM LIST OF ALL MOVIES THAT MEET CRITERIA ##########
 # I think this should be random at this stage to avoid generating the same recommendation each time the app is run with the same inputs
+# Maybe we can ask user if they want the most popular that meets the specified criteria or a random title
 
 
 ########## PRINT MOVIE TITLE & INFORMATION (E.G., YEAR, GENRE, DESCRIPTION, ETC.) ##########
-# May need to find an API to translate foreign movie titles to English
+
 
