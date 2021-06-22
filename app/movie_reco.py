@@ -1,7 +1,28 @@
-from pandas import read_csv
+# Import os  and load_dotenv to read variables from .env
+# Import read_csv from pandas to process CSV
+import os
+from dotenv import load_dotenv
+import requests
+from pandas import read_csv 
+
+load_dotenv()
+
+# Get TMDb API key
+TMBD_API_KEY = os.getenv("TMBD_API_KEY")
+
 
 csv_filepath = "data/tmdb_5000_movies.csv"
 movies_df = read_csv(csv_filepath)
+
+# Testing API call
+request_url = f"https://api.themoviedb.org/3/movie/550?api_key={TMBD_API_KEY}"
+response = requests.get(request_url)
+
+print(response)
+print("-----------------")
+print("-----------------")
+print("-----------------")
+print("-----------------")
 
 # Create a list of dictionaries from DataFrame
 movies = movies_df.to_dict("records")
@@ -13,7 +34,6 @@ movies = movies_df.to_dict("records")
 # Print keys for each dictionary in the list
 # print(movies[0].keys())
 # dict_keys(['budget', 'genres', 'homepage', 'id', 'keywords', 'original_language', 'original_title', 'overview', 'popularity', 'production_companies', 'production_countries', 'release_date', 'revenue', 'runtime', 'spoken_languages', 'status', 'tagline', 'title', 'vote_average', 'vote_count'])
-
 
 
 ########## GENRE ##########
@@ -100,5 +120,5 @@ else:
 
 
 ########## PRINT MOVIE TITLE & INFORMATION (E.G., YEAR, GENRE, DESCRIPTION, ETC.) ##########
-
+# Add attribution to Kaggle / TMDb
 
