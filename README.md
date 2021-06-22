@@ -4,7 +4,7 @@
 
 Setup a virtual environment using the below command:
 ```sh
-conda create -n movie-reco-env python=3.8
+conda create -n movie-recs-env python=3.8
 
 ```
 
@@ -14,7 +14,7 @@ Then activate the virtual environment using the below command:
 <<<<<<< Updated upstream
 conda activate movie_recs-env
 =======
-conda activate movie-reco-env
+conda activate movie-recs-env
 >>>>>>> Stashed changes
 ```
 
