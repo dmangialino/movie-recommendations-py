@@ -20,10 +20,11 @@ conda activate movie-recs-env
 
 ```
 pip install -r requirements.txt
-
 ```
 
 
-# Movie Data
+# Third Party Datasets and APIs Used
+
+## Movie Data from Kaggle based on The Movie Database (TMDb)
 
 Movie dataset from Kaggle, based on The Movie Database (TMDb) data: https://www.kaggle.com/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv

@@ -1,1 +1,8 @@
+# To read contents of the .env file
+python-dotenv
+
+# To process CSV 
 pandas
+
+# To use requests / make API calls
+requests
