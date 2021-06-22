@@ -22,7 +22,7 @@ conda activate movie-recs-env
 pip install -r requirements.txt
 ```
 
-## Create a TMBD API Key
+# Create a TMBD API Key
 This tool uses movie information from the TMDB API, so you will need ot set up a TMDB API Key to use this tool. Create a TMDB account via https://www.themoviedb.org/signup and generate an API key. You will then need to store this API key later in a .env file.
 
 ## Configuring Environment Variables
@@ -33,8 +33,10 @@ TMBD_API_KEY  = "enter store name here"
 
 ```
 
+
 # Third Party Datasets and APIs Used
 
 ## Movie Data from Kaggle based on The Movie Database (TMDb)
 
 Movie dataset from Kaggle, based on The Movie Database (TMDb) data: https://www.kaggle.com/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv
+

@@ -1,6 +1,8 @@
-python-dotenv 
-sendgrid==6.6.0
+# To read contents of the .env file
+python-dotenv
 
-pygsheets
+# To process CSV 
+pandas
 
-imdbpy
+# To use requests / make API calls
+requests
