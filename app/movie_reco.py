@@ -63,7 +63,6 @@ while True:
     
 
 today = datetime.datetime.today()
-# date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d')
 new = []
 old = []
 
@@ -74,10 +73,6 @@ for n in movies:
             new.append(n)
         else:
             old.append(n)
-
-#print("LEN NEW", len(new))
-#print("LEN OLD", len(old))
-#print("MOVIES BEFORE RELEASE DATA LOGIC: ", len(movies))
 
 # One of the movies (infinite) release date is in future...
 # print("new", new)
@@ -136,17 +131,24 @@ else:
 
 print("------------------------------")
 
-# Check that results are not empty...if not, use movies_block, else, revert back to movies
+
+###################################################################################################################################
+# SOMETHING TO CONSIDER: If we want to incorporate processing CSV/Google Sheet, maybe we add code to the bottom that checks       #
+# ... if the original title is in the CSV/Google Sheet as original_title or title and, if yes, prints some details from the CSV   #
+# ... (potentially overview, tag line, runtime, website)                                                                          #
+###################################################################################################################################
+
+
 # Radomly sort resulsts so can provide different recommendation with same criteria (e.g., different one? otpion)
 # Shuffle function found on W3Schools (https://www.w3schools.com/python/ref_random_shuffle.asp)
-if(len(movies_block) > 0):
+if(len(movies_block) > 0): # Check for results in movies_block
     random.shuffle(movies_block)
     print("This is the movie you get and you don't get upset: ", movies_block[0]['original_title'])
     print("People gave this movie a rating of ", movies_block[0]['vote_average'])
     print("------------------------------")
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
     print("------------------------------")
-elif(len(movies) > 0):
+elif(len(movies) > 0):  # If no results in movies_block, check for results in movies
     print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
     random.shuffle(movies)
     print("This is the movie you get and you don't get upset: ", movies[0]['original_title'])
