@@ -31,7 +31,7 @@ gen_id = genres[input_genre]
 #print(gen_id)
 
 
-# Genre API Call
+# API call based on genre
 request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genre={gen_id}"
 
 response = requests.get(request_url)
@@ -45,9 +45,11 @@ movie_list = parsed_response["results"]
 for p in range(0,9):
     movies.append(parsed_response["results"][p])
 
-input_age = input("Would you prefer a recently released film?(Y/N) ").upper()
-
-#### ADD USER INPUT VALIDATION
+while True:
+    input_age = input("Would you prefer a recently released film?(Y/N) ").upper()
+    if (input_age == "Y") or (input_age == "N"):
+        break
+    
 
 today = datetime.datetime.today()
 # date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d')
@@ -82,11 +84,11 @@ else:
 
 
 # Blockbuster film
+while True:
+    input_block = input("Would you like to see a blockbuster?(Y/N) ").upper()
+    if (input_block == "Y") or (input_block == "N"):
+        break
 
-input_block = input("Would you like to see a blockbuster?(Y/N) ").upper()
-
-
-#### ADD USER INPUT VALIDATION
 
 #print(len(movies))
 movies_block = []
