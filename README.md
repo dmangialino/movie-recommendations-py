@@ -29,14 +29,13 @@ This tool uses movie information from the TMDB API, so you will need ot set up a
 In the root directory of your local repository, create a new file called ".env", and update the contents of the ".env" file with the below information:
 
 ```
-TMBD_API_KEY  = "enter store name here"
-
+TMBD_API_KEY  = "enter TMDB API key here"
 ```
 
 
 # Third Party Datasets and APIs Used
 
-## Movie Data from Kaggle based on The Movie Database (TMDb)
+## Movie Data Pulled from TMDb API
 
-Movie dataset from Kaggle, based on The Movie Database (TMDb) data: https://www.kaggle.com/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv
+https://www.themoviedb.org/documentation/api
 
