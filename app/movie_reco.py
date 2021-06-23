@@ -23,13 +23,21 @@ genres_list = parsed_genre["genres"]
 genres = {}
 for g in genres_list:
     genres.update({g["name"].upper():g["id"]})
-print(genres)
 
-input_genre = input("Please enter a genre for a film you would like to see ").upper()
+print("AVAILABLE GENRES: ")
+for genre in genres_list:
+    print(genre["name"])
+
+#print(genres)
+print("------------------------------")
+
+while True:
+    input_genre = input("Please enter a genre for a film you would like to see (select from list above): ").upper()
+    if input_genre in genres:
+        break
+
 gen_id = genres[input_genre]
-
-#print(gen_id)
-
+    
 
 # API call based on genre
 request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genre={gen_id}"
@@ -45,8 +53,11 @@ movie_list = parsed_response["results"]
 for p in range(0,9):
     movies.append(parsed_response["results"][p])
 
+
+# New release
+print("------------------------------")
 while True:
-    input_age = input("Would you prefer a recently released film?(Y/N) ").upper()
+    input_age = input("Would you prefer a recently released film? (Y/N) ").upper()
     if (input_age == "Y") or (input_age == "N"):
         break
     
@@ -84,8 +95,9 @@ else:
 
 
 # Blockbuster film
+print("------------------------------")
 while True:
-    input_block = input("Would you like to see a blockbuster?(Y/N) ").upper()
+    input_block = input("Would you like to see a blockbuster? (Y/N) ").upper()
     if (input_block == "Y") or (input_block == "N"):
         break
 
@@ -123,6 +135,8 @@ else:
 #    print("Invalid input. Proceeding with all movies currently selected.")
 
 
+print("------------------------------")
+
 # Check that results are not empty...if not, use movies_block, else, revert back to movies
 # Radomly sort resulsts so can provide different recommendation with same criteria (e.g., different one? otpion)
 # Shuffle function found on W3Schools (https://www.w3schools.com/python/ref_random_shuffle.asp)
@@ -132,7 +146,7 @@ if(len(movies_block) > 0):
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
 else:
     print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
-    random.suffle(movies)
+    random.shuffle(movies)
     print("This is the movie you get and you don't get upset: ", movies[0]['original_title'], 'People gave this movie a rating of ', movies[0]['vote_average'])
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
 
