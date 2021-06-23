@@ -5,6 +5,7 @@ from pandas import read_csv
 import json
 import datetime
 from operator import itemgetter
+import random
 
 load_dotenv()
 
@@ -30,7 +31,7 @@ gen_id = genres[input_genre]
 print(gen_id)
 
 
-# Testing API call
+# Genre API Call
 request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genre={gen_id}"
 
 response = requests.get(request_url)
@@ -45,13 +46,14 @@ for p in range(0,9):
     movies.append(parsed_response["results"][p])
 
 input_age = input("Would you prefer a recently released film?(Y/N) ").upper()
+
+#### ADD USER INPUT VALIDATION
+
 today = datetime.datetime.today()
 # date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d')
 new = []
 old = []
 
-
-# Added validation that n has a "release_date" 
 for n in movies:
     if "release_date" in n:
         date_time_obj = datetime.datetime.strptime(n['release_date'], '%Y-%m-%d')
@@ -70,37 +72,68 @@ for n in movies:
 #     print(n["release_date"])
 # print("old", old)
 
-# Resetting Movies list based on user preference
-if input_age == "Y":
+# Resetting Movies list based on user preference for recent vs. older movie
+if(input_age == "Y"):
     movies = new
-else:
+elif(input_age == "N"):
     movies = old
+else:
+    print("Invalid input. Proceeding with all movies currently selected.")
 
-print("MOVIES AFTER RELEASE DATA LOGIC: ", len(movies))
+
+# Blockbuster film
 
 input_block = input("Would you like to see a blockbuster?(Y/N) ").upper()
 
 
-# Add input validation
+#### ADD USER INPUT VALIDATION
 
+#print(len(movies))
+#movies_block = []
 
-if input_block == "Y":
+if(input_block == "Y"):
     for n in movies:
-        if float(n['vote_average']) < 7:
-            movies.remove(n)
+        if(float(n["vote_average"]) > float(7.0)):
+            movies_block.append(n)
+elif(input_block == "N"):
+    for n in movies:
+        if(float(n["vote_average"]) <= float(7.0)):
+            print("NEED TO REMOVE!")
+            movies_block.append(n)
 else:
-    for n in movies:
-        if float(n['vote_average']) >= 7:
-            movies.remove(n)
+    print("INVALID INPUT")
 
-# Need to add validation that movies is not empty
-# If yes, revert to version before last user input
+#print(len(movies_block))
+#for n in movies_block:
+#    print(n["original_title"], n["vote_average"])
+
+#if(input_block == "Y"):
+#    for n in movies:
+#        if(float(n["vote_average"]) < 7.0):
+#            movies.remove(n)
+#elif(input_block == "N"):
+#    print(len(movies))
+#    for n in movies:
+#        print(n["original_title"], float(n["vote_average"]))
+#        if(float(n["vote_average"]) >= 7.0):
+#            print("NEED TO REMOVE")
+#            movies.remove(n)
+#else:
+#    print("Invalid input. Proceeding with all movies currently selected.")
 
 
-# Maybe we should make this a random sort so we can provide different recommendation for same criteria
-# We could then implement a "give me a different one" option for the same criteria
-movies.sort(reverse=True, key=itemgetter('vote_average'))
+# Check that results are not empty...if not, use movies_block, else, revert back to movies
+# Radomly sort resulsts so can provide different recommendation with same criteria (e.g., different one? otpion)
+# Shuffle function found on W3Schools (https://www.w3schools.com/python/ref_random_shuffle.asp)
+if(len(movies_block) > 0):
+    print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
+    random.shuffle(movies_block)
+    print("This is the movie you get and you don't get upset: ", movies_block[0]['original_title'], 'People gave this movie a rating of ', movies_block[0]['vote_average'])
+    print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
+else:
+    random.suffle(movies)
+    print("This is the movie you get and you don't get upset: ", movies[0]['original_title'], 'People gave this movie a rating of ', movies[0]['vote_average'])
+    print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
 
 
-print("This is the movie you get and you don't get upset: ", movies[0]['original_title'], 'People gave this movie a rating of ', movies[0]['vote_average'])
-print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
+#movies.sort(reverse=True, key=itemgetter('vote_average'))
