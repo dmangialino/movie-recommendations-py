@@ -28,7 +28,7 @@ print(genres)
 input_genre = input("Please enter a genre for a film you would like to see ").upper()
 gen_id = genres[input_genre]
 
-print(gen_id)
+#print(gen_id)
 
 
 # Genre API Call
@@ -89,7 +89,7 @@ input_block = input("Would you like to see a blockbuster?(Y/N) ").upper()
 #### ADD USER INPUT VALIDATION
 
 #print(len(movies))
-#movies_block = []
+movies_block = []
 
 if(input_block == "Y"):
     for n in movies:
@@ -98,7 +98,6 @@ if(input_block == "Y"):
 elif(input_block == "N"):
     for n in movies:
         if(float(n["vote_average"]) <= float(7.0)):
-            print("NEED TO REMOVE!")
             movies_block.append(n)
 else:
     print("INVALID INPUT")
@@ -126,11 +125,11 @@ else:
 # Radomly sort resulsts so can provide different recommendation with same criteria (e.g., different one? otpion)
 # Shuffle function found on W3Schools (https://www.w3schools.com/python/ref_random_shuffle.asp)
 if(len(movies_block) > 0):
-    print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
     random.shuffle(movies_block)
     print("This is the movie you get and you don't get upset: ", movies_block[0]['original_title'], 'People gave this movie a rating of ', movies_block[0]['vote_average'])
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
 else:
+    print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
     random.suffle(movies)
     print("This is the movie you get and you don't get upset: ", movies[0]['original_title'], 'People gave this movie a rating of ', movies[0]['vote_average'])
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
