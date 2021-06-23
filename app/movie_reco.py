@@ -144,11 +144,13 @@ if(len(movies_block) > 0):
     random.shuffle(movies_block)
     print("This is the movie you get and you don't get upset: ", movies_block[0]['original_title'], 'People gave this movie a rating of ', movies_block[0]['vote_average'])
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
-else:
+elif(len(movies) > 0):
     print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
     random.shuffle(movies)
     print("This is the movie you get and you don't get upset: ", movies[0]['original_title'], 'People gave this movie a rating of ', movies[0]['vote_average'])
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
+else:  # Need to figure out something to do if both are empty
+    print("No matches!")
 
 
 #movies.sort(reverse=True, key=itemgetter('vote_average'))
