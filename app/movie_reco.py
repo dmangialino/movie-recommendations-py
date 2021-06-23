@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 import requests
 from pandas import read_csv 
+import json
 
 load_dotenv()
 
@@ -15,14 +16,26 @@ csv_filepath = "data/tmdb_5000_movies.csv"
 movies_df = read_csv(csv_filepath)
 
 # Testing API call
-request_url = f"https://api.themoviedb.org/3/movie/550?api_key={TMBD_API_KEY}"
+request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genre=80"
+
 response = requests.get(request_url)
 
 print(response)
-print("-----------------")
-print("-----------------")
-print("-----------------")
-print("-----------------")
+print(type(response))
+
+print(response.text)
+
+parsed_response = json.loads(response.text)
+
+print("------------------------------")
+print("------------------------------")
+print("------------------------------")
+print(parsed_response)
+print("------------------------------")
+print("------------------------------")
+print("------------------------------")
+
+
 
 # Create a list of dictionaries from DataFrame
 movies = movies_df.to_dict("records")
