@@ -15,6 +15,18 @@ TMBD_API_KEY = os.getenv("TMBD_API_KEY")
 csv_filepath = "data/tmdb_5000_movies.csv"
 movies_df = read_csv(csv_filepath)
 
+# Create Dictionary of Genres
+genre_url = f"https://api.themoviedb.org/3/genre/movie/list?api_key={TMBD_API_KEY}"
+genre_response = requests.get(genre_url)
+parsed_genre = json.loads(genre_response.text)
+genres_list = parsed_genre["genres"]
+genres = {}
+for g in genres_list:
+    genres.update({g["name"].upper():g["id"]})
+print(genres)
+
+
+
 # Testing API call
 request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genre=80"
 
