@@ -39,7 +39,7 @@ gen_id = genres[input_genre]
     
 
 # API call based on genre
-request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genre={gen_id}"
+request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genres={gen_id}"
 
 response = requests.get(request_url)
 parsed_response = json.loads(response.text)
@@ -122,30 +122,28 @@ rec_title = ""
 rec_rating = ""
 if(len(movies_block) > 0):
     random.shuffle(movies_block)
-    #rec_title = movies_block[0]["original_title"]
-    #rec_rating = movies_block[0]["vote_average"]
-    rec = movies_block[0]
+    rec_title = movies_block[0]["original_title"]
+    rec_rating = movies_block[0]["vote_average"]
 elif(len(movies) > 0):
     random.suffle(movies)
-    #rec_title = movies[0]["original_title"]
-    #rec_rating = movies[0]["vote_average"]
-    rec = movies[0]
+    rec_title = movies[0]["original_title"]
+    rec_rating = movies[0]["vote_average"]
 else:
     # No movies match criteria
     # Randomly select movie from the CSV dataset
+    print("IN THE ELSE...NO MATCHES")
     csv_filepath = "data/tmdb_5000_movies.csv"
     movies_df = read_csv(csv_filepath)
     movies_csv = movies_df.to_dict("records")
-
     matching_genres = []
     search_genre = ""
     if(input_genre != "TV MOVIE"):
         search_genre = input_genre.title()
-    
     else:
         # String concateation to translate "TV MOVIE" to "TV Movie" to find matches in CSV        
-        print("TO DO")
-
+        splt = input_genre.split("")
+        search_genre = splt[0]+""+splt[1].capitalize()
+        print(search_genre)
     for n in movies_csv:
         if(search_genre in n["genres"]):
             #print(n["original_title"])
@@ -155,21 +153,23 @@ else:
     rec_title = matching_genres[0]["original_title"]
     rec_rating = matching_genres[0]["vote_average"]
 
+
+# Print movie recommendation
 if(len(movies_block) == 0):
     print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
     print("------------------------------")
 
-#print("This is the movie you get and you don't get upset: ", rec_title)
-#print("People gave this movie a rating of ", rec_rating)
-print(rec)
+print("This is the movie you get and you don't get upset: ", rec_title)
+print("People gave this movie a rating of ", rec_rating)
 print("------------------------------")
 print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
 print("------------------------------")
 
 
+
+
+
 # SEND EMAIL RECEIPT
-
-
 
 wants_email = input("Would you like an email receipt of your recommendation? (Y/N)? ").strip()
 if wants_email.lower() in ['y','yes']:
@@ -178,9 +178,9 @@ if wants_email.lower() in ['y','yes']:
     email_confirm = input("Please retype your email: ").strip()
     if user_email.lower() != email_confirm.lower():
         user_email = input("Emails do not match. Please retype your email: ").strip()
-
 else:
     send_email = False
+
 
 if send_email:
     from sendgrid import SendGridAPIClient
