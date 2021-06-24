@@ -179,7 +179,7 @@ if send_email:
     "input_genre": input_genre,
     "input_age": input_age,
     "input_block": input_block,
-    "movies_block": movies_block,
+    "rec_title": rec_title,
     } 
 
     client = SendGridAPIClient(SENDGRID_API_KEY)
