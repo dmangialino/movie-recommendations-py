@@ -35,6 +35,8 @@ while True:
     input_genre = input("Please enter a genre for a film you would like to see (select from list above): ").upper()
     if input_genre in genres:
         break
+    else:
+        print("Invalid genre. Please select a genre from the list above.")
 
 gen_id = genres[input_genre]
     
@@ -60,6 +62,8 @@ while True:
     input_age = input("Would you prefer a recently released film? (Y/N) ").upper()
     if (input_age == "Y") or (input_age == "N"):
         break
+    else:
+        print("Invalid input. Please input 'Y' or 'N")
     
 
 today = datetime.datetime.today()
@@ -95,6 +99,8 @@ while True:
     input_block = input("Would you like to see a blockbuster? (Y/N) ").upper()
     if (input_block == "Y") or (input_block == "N"):
         break
+    else:
+        print("Invalid input. Please input 'Y' or 'N")
 
 
 movies_block = []
@@ -131,13 +137,12 @@ else:
 
 print("------------------------------")
 
+#movies.sort(reverse=True, key=itemgetter('vote_average'))
 
 ###################################################################################################################################
-# SOMETHING TO CONSIDER: If we want to incorporate processing CSV/Google Sheet, maybe we add code to the bottom that checks       #
-# ... if the original title is in the CSV/Google Sheet as original_title or title and, if yes, prints some details from the CSV   #
-# ... (potentially overview, tag line, runtime, website)                                                                          #
+# SOMETHING TO CONSIDER: If we want to incorporate processing CSV/Google Sheet, maybe in third scenario below where there are     #
+# ... no matches we can present a random option from the CSV/Google Sheet                                                         #
 ###################################################################################################################################
-
 
 # Radomly sort resulsts so can provide different recommendation with same criteria (e.g., different one? otpion)
 # Shuffle function found on W3Schools (https://www.w3schools.com/python/ref_random_shuffle.asp)
@@ -156,8 +161,7 @@ elif(len(movies) > 0):  # If no results in movies_block, check for results in mo
     print("------------------------------")
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
     print("------------------------------")
-else:  # Need to figure out something to do if both are empty
+else:
     print("We're sorry, there are no matching movies for that criteria.")
     print("------------------------------")
 
-#movies.sort(reverse=True, key=itemgetter('vote_average'))
