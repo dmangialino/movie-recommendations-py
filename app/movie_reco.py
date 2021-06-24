@@ -12,9 +12,6 @@ load_dotenv()
 # Get TMDb API key
 TMBD_API_KEY = os.getenv("TMBD_API_KEY")
 
-#csv_filepath = "data/tmdb_5000_movies.csv"
-#movies_df = read_csv(csv_filepath)
-
 # Create Dictionary of Genres
 genre_url = f"https://api.themoviedb.org/3/genre/movie/list?api_key={TMBD_API_KEY}"
 genre_response = requests.get(genre_url)
@@ -116,29 +113,7 @@ elif(input_block == "N"):
 else:
     print("INVALID INPUT")
 
-#print(len(movies_block))
-#for n in movies_block:
-#    print(n["original_title"], n["vote_average"])
-
-#if(input_block == "Y"):
-#    for n in movies:
-#        if(float(n["vote_average"]) < 7.0):
-#            movies.remove(n)
-#elif(input_block == "N"):
-#    print(len(movies))
-#    for n in movies:
-#        print(n["original_title"], float(n["vote_average"]))
-#        if(float(n["vote_average"]) >= 7.0):
-#            print("NEED TO REMOVE")
-#            movies.remove(n)
-#else:
-#    print("Invalid input. Proceeding with all movies currently selected.")
-
-
 print("------------------------------")
-
-#movies.sort(reverse=True, key=itemgetter('vote_average'))
-
 
 # Select recommendation randomly from list of movies that match criteria
 # Shuffle function found on W3Schools (https://www.w3schools.com/python/ref_random_shuffle.asp)
@@ -155,7 +130,12 @@ elif(len(movies) > 0):
 else:
     # No movies match criteria
     # Randomly select movie from the CSV dataset
-    print("NO MATCHES")
+    csv_filepath = "data/tmdb_5000_movies.csv"
+    movies_df = read_csv(csv_filepath)
+    movies_csv = movies_df.to_dict("records")    
+    random.shuffle(movies_csv)
+    rec_title = movies_csv[0]["original_title"]
+    rec_rating = movies_csv[0]["vote_average"]
 
 if(len(movies_block) == 0):
     print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
