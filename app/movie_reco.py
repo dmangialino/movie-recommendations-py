@@ -12,6 +12,15 @@ load_dotenv()
 # Get TMDb API key
 TMBD_API_KEY = os.getenv("TMBD_API_KEY")
 
+def fetch_movie_genre(genre_id):
+    request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genres={genre_id}"
+
+    response = requests.get(request_url)
+    parsed_response = json.loads(response.text)
+    movies = parsed_response["results"]
+    return movies
+
+
 # Create Dictionary of Genres
 genre_url = f"https://api.themoviedb.org/3/genre/movie/list?api_key={TMBD_API_KEY}"
 genre_response = requests.get(genre_url)
@@ -36,14 +45,15 @@ while True:
         print("Invalid genre. Please select a genre from the list above.")
 
 gen_id = genres[input_genre]
-    
+
+movies = fetch_movie_genre(gen_id)
 
 # API call based on genre
-request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genres={gen_id}"
+# request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genres={gen_id}"
 
-response = requests.get(request_url)
-parsed_response = json.loads(response.text)
-movies = parsed_response["results"]
+# response = requests.get(request_url)
+# parsed_response = json.loads(response.text)
+# movies = parsed_response["results"]
 
 # print(type(parsed_response["results"]))
 
