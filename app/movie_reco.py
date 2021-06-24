@@ -43,14 +43,15 @@ request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KE
 
 response = requests.get(request_url)
 parsed_response = json.loads(response.text)
+movies = parsed_response["results"]
 
 # print(type(parsed_response["results"]))
 
 # Create list of 10 movies to make it easier to review
-movies = []
-movie_list = parsed_response["results"]
-for p in range(0,9):
-    movies.append(parsed_response["results"][p])
+#movies = []
+#movie_list = parsed_response["results"]
+#for p in range(0,9):
+#    movies.append(parsed_response["results"][p])
 
 
 # New release
