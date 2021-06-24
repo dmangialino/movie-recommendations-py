@@ -139,29 +139,30 @@ print("------------------------------")
 
 #movies.sort(reverse=True, key=itemgetter('vote_average'))
 
-###################################################################################################################################
-# SOMETHING TO CONSIDER: If we want to incorporate processing CSV/Google Sheet, maybe in third scenario below where there are     #
-# ... no matches we can present a random option from the CSV/Google Sheet                                                         #
-###################################################################################################################################
 
-# Radomly sort resulsts so can provide different recommendation with same criteria (e.g., different one? otpion)
+# Select recommendation randomly from list of movies that match criteria
 # Shuffle function found on W3Schools (https://www.w3schools.com/python/ref_random_shuffle.asp)
-if(len(movies_block) > 0): # Check for results in movies_block
+rec_title = ""
+rec_rating = ""
+if(len(movies_block) > 0):
     random.shuffle(movies_block)
-    print("This is the movie you get and you don't get upset: ", movies_block[0]['original_title'])
-    print("People gave this movie a rating of ", movies_block[0]['vote_average'])
-    print("------------------------------")
-    print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
-    print("------------------------------")
-elif(len(movies) > 0):  # If no results in movies_block, check for results in movies
-    print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
-    random.shuffle(movies)
-    print("This is the movie you get and you don't get upset: ", movies[0]['original_title'])
-    print("People gave this movie a rating of ", movies[0]['vote_average'])
-    print("------------------------------")
-    print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
-    print("------------------------------")
+    rec_title = movies_block[0]["original_title"]
+    rec_rating = movies_block[0]["vote_average"]
+elif(len(movies) > 0):
+    random.suffle(movies)
+    rec_title = movies[0]["original_title"]
+    rec_rating = movies[0]["vote_average"]
 else:
-    print("We're sorry, there are no matching movies for that criteria.")
+    # No movies match criteria
+    # Randomly select movie from the CSV dataset
+    print("NO MATCHES")
+
+if(len(movies_block) == 0):
+    print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
     print("------------------------------")
 
+print("This is the movie you get and you don't get upset: ", rec_title)
+print("People gave this movie a rating of ", rec_rating)
+print("------------------------------")
+print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
+print("------------------------------")
