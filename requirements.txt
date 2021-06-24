@@ -9,3 +9,6 @@ requests
 
 # To build web app
 Flask
+
+#To send emails
+sendgrid

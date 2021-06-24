@@ -146,3 +146,62 @@ print("People gave this movie a rating of ", rec_rating)
 print("------------------------------")
 print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
 print("------------------------------")
+
+
+# SEND EMAIL RECEIPT
+
+
+
+wants_email = input("Would you like an email receipt of your recommendation? (Y/N)? ").strip()
+if wants_email.lower() in ['y','yes']:
+    send_email = True
+    user_email = input("Please type your email: ").strip()
+    email_confirm = input("Please retype your email: ").strip()
+    if user_email.lower() != email_confirm.lower():
+        user_email = input("Emails do not match. Please retype your email: ").strip()
+
+else:
+    send_email = False
+
+if send_email:
+    from sendgrid import SendGridAPIClient
+    from sendgrid.helpers.mail import Mail
+
+    load_dotenv()
+
+    SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
+    SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
+    #SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+    SENDER_ADDRESS = user_email
+
+    # this must match the test data structure
+    template_data = {
+    "input_genre": input_genre,
+    "input_age": input_age,
+    "input_block": input_block,
+    "movies_block": movies_block,
+    } 
+
+    client = SendGridAPIClient(SENDGRID_API_KEY)
+    print("CLIENT:", type(client))
+
+    message = Mail(from_email=SENDER_ADDRESS, to_emails=SENDER_ADDRESS)
+    message.template_id = SENDGRID_TEMPLATE_ID
+    message.dynamic_template_data = template_data
+    print("MESSAGE:", type(message))
+
+    try:
+        response = client.send(message)
+        print("RESPONSE:", type(response))
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+
+    except Exception as err:
+        print(type(err))
+        print(err)
+    finally:
+        print("Thank you!")
+else:
+    print("Thank you!")
+
