@@ -6,3 +6,6 @@ pandas
 
 # To use requests / make API calls
 requests
+
+# To build web app
+Flask
