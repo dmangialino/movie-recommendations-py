@@ -43,14 +43,15 @@ request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KE
 
 response = requests.get(request_url)
 parsed_response = json.loads(response.text)
+movies = parsed_response["results"]
 
 # print(type(parsed_response["results"]))
 
 # Create list of 10 movies to make it easier to review
-movies = []
-movie_list = parsed_response["results"]
-for p in range(0,9):
-    movies.append(parsed_response["results"][p])
+#movies = []
+#movie_list = parsed_response["results"]
+#for p in range(0,9):
+#    movies.append(parsed_response["results"][p])
 
 
 # New release
@@ -121,28 +122,46 @@ rec_title = ""
 rec_rating = ""
 if(len(movies_block) > 0):
     random.shuffle(movies_block)
-    rec_title = movies_block[0]["original_title"]
-    rec_rating = movies_block[0]["vote_average"]
+    #rec_title = movies_block[0]["original_title"]
+    #rec_rating = movies_block[0]["vote_average"]
+    rec = movies_block[0]
 elif(len(movies) > 0):
     random.suffle(movies)
-    rec_title = movies[0]["original_title"]
-    rec_rating = movies[0]["vote_average"]
+    #rec_title = movies[0]["original_title"]
+    #rec_rating = movies[0]["vote_average"]
+    rec = movies[0]
 else:
     # No movies match criteria
     # Randomly select movie from the CSV dataset
     csv_filepath = "data/tmdb_5000_movies.csv"
     movies_df = read_csv(csv_filepath)
-    movies_csv = movies_df.to_dict("records")    
-    random.shuffle(movies_csv)
-    rec_title = movies_csv[0]["original_title"]
-    rec_rating = movies_csv[0]["vote_average"]
+    movies_csv = movies_df.to_dict("records")
+
+    matching_genres = []
+    search_genre = ""
+    if(input_genre != "TV MOVIE"):
+        search_genre = input_genre.title()
+    
+    else:
+        # String concateation to translate "TV MOVIE" to "TV Movie" to find matches in CSV        
+        print("TO DO")
+
+    for n in movies_csv:
+        if(search_genre in n["genres"]):
+            #print(n["original_title"])
+            matching_genres.append(n)
+    print("LEN MATCHING GENRES: ", len(matching_genres))
+    random.shuffle(matching_genres)
+    rec_title = matching_genres[0]["original_title"]
+    rec_rating = matching_genres[0]["vote_average"]
 
 if(len(movies_block) == 0):
     print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
     print("------------------------------")
 
-print("This is the movie you get and you don't get upset: ", rec_title)
-print("People gave this movie a rating of ", rec_rating)
+#print("This is the movie you get and you don't get upset: ", rec_title)
+#print("People gave this movie a rating of ", rec_rating)
+print(rec)
 print("------------------------------")
 print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
 print("------------------------------")
