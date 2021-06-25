@@ -199,9 +199,6 @@ if __name__ == "__main__":
 
     # Provide the user an option to obtain a different recommendation
     index = 0
-
-    print("FROM_LIST ", from_list)
-
     while True:
         input_new = input("Already seen it? Not what you're looking for? Would you like a new recommendation? (Y/N) ").upper()
         if(input_new == "N"):
@@ -265,8 +262,10 @@ if __name__ == "__main__":
         else:
             print("Invalid input. Please enter 'Y' or 'N'")
 
-    # Accredidation to The Movie Database API and dataset through Kaggle
+
+    # Accreditation to The Movie Database API and dataset through Kaggle
     print("------------------------------")
+    print("ACCREDITATION:")
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api) and Kaggle dataset (https://www.kaggle.com/tmdb/tmdb-movie-metadata)")
     print("------------------------------")
 
