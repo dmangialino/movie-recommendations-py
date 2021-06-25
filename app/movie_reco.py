@@ -39,7 +39,7 @@ if __name__ == "__main__":
     print("AVAILABLE GENRES: ")
     for genre in genres_list:
         print(genre["name"])
-    print("------------------------------")
+    print("------------------------------------------------------------")
 
     # Obtain genre selection from the user
     # Utilizes if statement to validate that the genre inputted by the user is available based on genre_list created above
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     ### OBTAIN AND PROCESS USER PREFERENCE: NEW RELEASE VS. OLDER FILM ###
 
     # Obtain and validate user input for y/n preference on recently released
-    print("------------------------------")
+    print("------------------------------------------------------------")
     while True:
         input_age = input("Would you prefer a recently released film? (Y/N) ").upper()
         if (input_age == "Y") or (input_age == "N"):
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     ### OBTAIN AND PROCESS USER PREFERENCE: BLOCKBUSTER / POPULAR MOVIE ###
 
     # Obtain and validate user input for y/n preference on blockbuster / popular movie
-    print("------------------------------")
+    print("------------------------------------------------------------")
     while True:
         input_block = input("Would you like to see a blockbuster (i.e., popular film)? (Y/N) ").upper()
         if (input_block == "Y") or (input_block == "N"):
@@ -128,7 +128,7 @@ if __name__ == "__main__":
                 movies_block.append(n)
     else:
         print("Invalid input. Proceeding with all movies that met other specified criteria.")
-    print("------------------------------")
+    print("------------------------------------------------------------")
 
     # Select recommendation randomly from list of movies that match criteria
     # Shuffle function found on W3Schools (https://www.w3schools.com/python/ref_random_shuffle.asp)
@@ -187,27 +187,31 @@ if __name__ == "__main__":
     # Print message to the user if there were no perfect matches (i.e., all three creitera were not met)
     if(len(movies_block) == 0):
         print("We're sorry! There were no perfect matches, but we'll give you a recommendation we think you'll enjoy!")
-        print("------------------------------")
+        print("------------------------------------------------------------")
 
     # Print movie recommendation
     print("This is the movie you get and you don't get upset: ", rec_title)
     print("People gave this movie a rating of ", rec_rating)
-    print("------------------------------")
+    print("------------------------------------------------------------")
 
 
     # Provide the user an option to obtain a different recommendation
+    # "index" variable is used to iterate through list of movie recommendations to continue providing recommendations until the 
+    #  ... user no longer requests a new recommendation or there are no movies left in the list
     index = 0
     while True:
         input_new = input("Already seen it? Not what you're looking for? Would you like a new recommendation? (Y/N) ").upper()
         if(input_new == "N"):
             break
         elif(input_new == "Y"):
+            # Increase index by one to move to the next movie in the list
             index = index + 1
             
+            # Original recommendation came from "movies_block" list and there is at least one more movie in the list 
             if(from_list == "movies_block") and (len(movies_block) > (index + 1)):
-                print("------------------------------")
+                print("------------------------------------------------------------")
                 print("Ok, we'll find you something else you might like!")
-                print("------------------------------")
+                print("------------------------------------------------------------")
 
                 rec_title = movies_block[index]["original_title"]
                 rec_rating = movies_block[index]["vote_average"]
@@ -215,11 +219,12 @@ if __name__ == "__main__":
 
                 print("This is the movie you get and you don't get upset: ", rec_title)
                 print("People gave this movie a rating of ", rec_rating)
-                print("------------------------------")                    
+                print("------------------------------------------------------------")                    
+            # Original recommendation came from "movies" list and there is at least one more movie in the list
             elif(from_list == "movies") and (len(movies) > (index + 1)):
-                print("------------------------------")
+                print("------------------------------------------------------------")
                 print("Ok, we'll find you something else you might like!")
-                print("------------------------------")
+                print("------------------------------------------------------------")
 
                 rec_title = movies[index]["original_title"]
                 rec_rating = movies[index]["vote_average"]
@@ -227,20 +232,22 @@ if __name__ == "__main__":
 
                 print("This is the movie you get and you don't get upset: ", rec_title)
                 print("People gave this movie a rating of ", rec_rating)
-                print("------------------------------")                    
+                print("------------------------------------------------------------")                    
+            # Original recommendation came from "matching_genres" list and there is at least one more movie in the list
             elif(from_list == "matching_genres") and (len(matching_genres) > (index + 1)):
                 print("------------------------------")
                 print("Ok, we'll find you something else you might like!")
-                print("------------------------------")
+                print("------------------------------------------------------------")
 
                 rec_title = matching_genres[index]["original_title"]
                 rec_rating = matching_genres[index]["vote_average"]
 
                 print("This is the movie you get and you don't get upset: ", rec_title)
                 print("People gave this movie a rating of ", rec_rating)
-                print("------------------------------")                    
+                print("------------------------------------------------------------")                    
+            # There are no other movies in the list from which the original recommendation was provided
             else:
-                print("------------------------------")
+                print("------------------------------------------------------------")
                 print("We're sorry! No other movies that matched the specified criteria. Try running again with different criteria.")
                 break
         else:
@@ -248,74 +255,75 @@ if __name__ == "__main__":
 
 
     # Accreditation to The Movie Database API and dataset through Kaggle
-    print("------------------------------")
+    print("------------------------------------------------------------")
     print("ACCREDITATION:")
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api) and Kaggle dataset (https://www.kaggle.com/tmdb/tmdb-movie-metadata)")
-    print("------------------------------")
+    print("------------------------------------------------------------")
 
 
 
    
-### Send email with recommended movie and details ###
+    ### Send email with recommended movie and details ###
 
-# Add poster path here
-poster_path = f"https://image.tmdb.org/t/p/w500/{poster}"
-# print(poster_path)
+    # Add poster path here
+    if(from_list == "movies_block") or (from_list == "movies"):
+        poster_path = f"https://image.tmdb.org/t/p/w500/{poster}"
+        # print(poster_path)
 
-# breakpoint
+    # breakpoint
 
-wants_email = input("Would you like an email with your recommendation? (Y/N)? ").strip()
-if wants_email.lower() in ['y','yes']:
-    send_email = True
-    user_email = input("Please type your email: ").strip()
-    email_confirm = input("Please retype your email: ").strip()
-    if user_email.lower() != email_confirm.lower():
-        user_email = input("Emails do not match. Please retype your email: ").strip()
-else:
-    send_email = False
-
-
-if send_email:
-    from sendgrid import SendGridAPIClient
-    from sendgrid.helpers.mail import Mail
-
-    load_dotenv()
-
-    SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
-    SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
-    #SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
-    SENDER_ADDRESS = user_email
-
-    # this must match the test data structure
-    template_data = {
-    "input_genre": input_genre,
-    "input_age": input_age,
-    "input_block": input_block,
-    "rec_title": rec_title,
-    "rec_rating": rec_rating,
-    } 
+    wants_email = input("Would you like an email with your recommendation? (Y/N)? ").strip()
+    if wants_email.lower() in ['y','yes']:
+        send_email = True
+        user_email = input("Please type your email: ").strip()
+        email_confirm = input("Please retype your email: ").strip()
+        if user_email.lower() != email_confirm.lower():
+            user_email = input("Emails do not match. Please retype your email: ").strip()
+    else:
+        send_email = False
 
 
-    client = SendGridAPIClient(SENDGRID_API_KEY)
-    print("CLIENT:", type(client))
+    if send_email:
+        from sendgrid import SendGridAPIClient
+        from sendgrid.helpers.mail import Mail
 
-    message = Mail(from_email=SENDER_ADDRESS, to_emails=SENDER_ADDRESS)
-    message.template_id = SENDGRID_TEMPLATE_ID
-    message.dynamic_template_data = template_data
-    print("MESSAGE:", type(message))
+        load_dotenv()
 
-    try:
-        response = client.send(message)
-        print("RESPONSE:", type(response))
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
+        SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
+        SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
+        #SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+        SENDER_ADDRESS = user_email
 
-    except Exception as err:
-        print(type(err))
-        print(err)
-    finally:
+        # this must match the test data structure
+        template_data = {
+        "input_genre": input_genre,
+        "input_age": input_age,
+        "input_block": input_block,
+        "rec_title": rec_title,
+        "rec_rating": rec_rating,
+        } 
+
+
+        client = SendGridAPIClient(SENDGRID_API_KEY)
+        print("CLIENT:", type(client))
+
+        message = Mail(from_email=SENDER_ADDRESS, to_emails=SENDER_ADDRESS)
+        message.template_id = SENDGRID_TEMPLATE_ID
+        message.dynamic_template_data = template_data
+        print("MESSAGE:", type(message))
+
+        try:
+            response = client.send(message)
+            print("RESPONSE:", type(response))
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+
+        except Exception as err:
+            print(type(err))
+            print(err)
+        finally:
+            print("Thank you!")
+    else:
         print("Thank you!")
-else:
-    print("Thank you!")
 
