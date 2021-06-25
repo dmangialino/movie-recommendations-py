@@ -13,7 +13,7 @@ load_dotenv()
 TMBD_API_KEY = os.getenv("TMBD_API_KEY")
 
 def fetch_movie_genre(genre_id):
-    request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genres={genre_id}"
+    request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genres={genre_id}&with_original_language=en"
 
     response = requests.get(request_url)
     parsed_response = json.loads(response.text)
