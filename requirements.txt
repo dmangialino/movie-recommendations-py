@@ -12,3 +12,6 @@ Flask
 
 #To send emails
 sendgrid
+
+#To install Pytest
+pytest
