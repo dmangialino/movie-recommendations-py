@@ -198,18 +198,72 @@ if __name__ == "__main__":
 
 
     # Provide the user an option to obtain a different recommendation
+    index = 0
+
+    print("FROM_LIST ", from_list)
+
     while True:
         input_new = input("Already seen it? Not what you're looking for? Would you like a new recommendation? (Y/N) ").upper()
         if(input_new == "N"):
             break
-        else:
+        elif(input_new == "Y"):
+            index = index + 1
+            
             if(from_list == "movies_block"):
-                print("Ok, we'll find you something else you might like! MOVIES_BLOCK")
-            if(from_list == "movies"):
-                print("Ok, we'll find you something else you might like! MOVIES")
-            if(from_list == "matching_genres"):
-                print("Ok, we'll find you something else you might like! MATCHING_GENRES")
+                if(len(movies_block) > (index + 1)):
+                    print("------------------------------")
+                    print("Ok, we'll find you something else you might like!")
+                    print("------------------------------")
 
+                    rec_title = movies_block[index]["original_title"]
+                    rec_rating = movies_block[index]["vote_average"]
+                    poster = movies_block[index]["poster_path"]
+
+                    print("This is the movie you get and you don't get upset: ", rec_title)
+                    print("People gave this movie a rating of ", rec_rating)
+                    print("------------------------------")                    
+                else:
+                    print("------------------------------")
+                    print("We're sorry! No other movies that matched the specified criteria. Try running again with different criteria.")
+                    break
+            elif(from_list == "movies"):
+                if(len(movies) > (index + 1)):
+                    print("------------------------------")
+                    print("Ok, we'll find you something else you might like!")
+                    print("------------------------------")
+
+                    rec_title = movies[index]["original_title"]
+                    rec_rating = movies[index]["vote_average"]
+                    poster = movies[index]["poster_path"]
+
+                    print("This is the movie you get and you don't get upset: ", rec_title)
+                    print("People gave this movie a rating of ", rec_rating)
+                    print("------------------------------")                    
+                else:
+                    print("------------------------------")
+                    print("We're sorry! No other movies that matched the specified criteria. Try running again with different criteria.")
+                    break
+            elif(from_list == "matching_genres"):
+                if(len(matching_genres) > (index + 1)):
+                    print("------------------------------")
+                    print("Ok, we'll find you something else you might like!")
+                    print("------------------------------")
+
+                    rec_title = matching_genres[index]["original_title"]
+                    rec_rating = matching_genres[index]["vote_average"]
+
+                    print("This is the movie you get and you don't get upset: ", rec_title)
+                    print("People gave this movie a rating of ", rec_rating)
+                    print("------------------------------")                    
+                else:
+                    print("------------------------------")
+                    print("We're sorry! No other movies that matched the specified criteria. Try running again with different criteria.")
+                    break
+            else:
+                print("We're sorry, no additional movies can be provided. Please try again.")
+                break
+        else:
+            print("Invalid input. Please enter 'Y' or 'N'")
 
     # Accredidation to The Movie Database API and dataset through Kaggle
     print("------------------------------")
