@@ -47,12 +47,8 @@ Once setting up your account, select Email API and create your own Dynamic Templ
     <p style="margin-left: 20px; line-height: 1;"><strong>Recency:&nbsp;</strong>{{input_age}}</p>
     <p style="margin-left: 20px; line-height: 1;"><strong>Blockbuster:</strong> {{input_block}}</p>
     <p>Please see below for your personalized recommendations!</p>
-    <ul>
-{{#each movies_block }}
-    <li><strong>Your recommendations:</strong> {{rec_title}} ({{rec_rating}})</li> 
-{{/each}}
-</ul>
-
+    <p style="margin-left: 20px; line-height: 1;"><strong>Recommended Movie:</strong> {{this.rec_title}}</p>
+    <p style="margin-left: 20px; line-height: 1;"><strong>People gave this movie a rating of: </strong>{{this.rec_rating}} </p>
     <p>Please come back for more recommendations!</p>
 </body>
 
@@ -64,14 +60,11 @@ On the Test Data page, paste the below code. You will not need to make any chang
 
 ```
 {
-    "input_genre": "Comedy",
+    "input_genre": "Action",
     "input_age": "Y",
     "input_block": "Y",
-    "movies_block":[
-        {"rec_title": "Star Wars: The Last Jedi", "rec_rating": 1.0},
-        {"rec_title": "Star Wars: The Last Jedi", "rec_rating": 1.0},
-        {"rec_title": "Star Wars: The Last Jedi", "rec_rating": 1.0}
-    ]
+    "rec_title":"Avengers",
+    "rec_rating": "10.0"
 }
 
 ```
@@ -96,3 +89,6 @@ SENDER_ADDRESS = "enter email address"
 
 https://www.themoviedb.org/documentation/api
 
+## CSV
+
+Add CSV link
