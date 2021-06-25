@@ -117,12 +117,14 @@ if __name__ == "__main__":
 
     if(input_block == "Y"):
         for n in movies:
-            if(float(n["vote_average"]) > float(7.0)):
-                movies_block.append(n)
+            if "release_date" in n:
+                if(float(n["vote_average"]) > float(7.0)):
+                    movies_block.append(n)
     elif(input_block == "N"):
-        for n in movies:
-            if(float(n["vote_average"]) <= float(7.0)):
-                movies_block.append(n)
+        if "release_date" in n:
+            for n in movies:
+                if(float(n["vote_average"]) <= float(7.0)):
+                    movies_block.append(n)
     else:
         print("INVALID INPUT")
 
