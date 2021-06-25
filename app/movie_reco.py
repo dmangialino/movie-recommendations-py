@@ -120,14 +120,12 @@ if __name__ == "__main__":
     # Both paths include a "if 'release_date' in n" check to handle any movie entries that may not have a "release_date" key 
     if(input_block == "Y"):
         for n in movies:
-            if "release_date" in n:
-                if(float(n["vote_average"]) > float(7.0)):
-                    movies_block.append(n)
+            if("release_date" in n) and (float(n["vote_average"]) > float(7.0)):
+                movies_block.append(n)
     elif(input_block == "N"):
         for n in movies:
-            if "release_date" in n:
-                if(float(n["vote_average"]) <= float(7.0)):
-                    movies_block.append(n)
+            if("release_date" in n) and (float(n["vote_average"]) <= float(7.0)):
+                movies_block.append(n)
     else:
         print("Invalid input. Proceeding with all movies that met other specified criteria.")
     print("------------------------------")
@@ -206,58 +204,44 @@ if __name__ == "__main__":
         elif(input_new == "Y"):
             index = index + 1
             
-            if(from_list == "movies_block"):
-                if(len(movies_block) > (index + 1)):
-                    print("------------------------------")
-                    print("Ok, we'll find you something else you might like!")
-                    print("------------------------------")
+            if(from_list == "movies_block") and (len(movies_block) > (index + 1)):
+                print("------------------------------")
+                print("Ok, we'll find you something else you might like!")
+                print("------------------------------")
 
-                    rec_title = movies_block[index]["original_title"]
-                    rec_rating = movies_block[index]["vote_average"]
-                    poster = movies_block[index]["poster_path"]
+                rec_title = movies_block[index]["original_title"]
+                rec_rating = movies_block[index]["vote_average"]
+                poster = movies_block[index]["poster_path"]
 
-                    print("This is the movie you get and you don't get upset: ", rec_title)
-                    print("People gave this movie a rating of ", rec_rating)
-                    print("------------------------------")                    
-                else:
-                    print("------------------------------")
-                    print("We're sorry! No other movies that matched the specified criteria. Try running again with different criteria.")
-                    break
-            elif(from_list == "movies"):
-                if(len(movies) > (index + 1)):
-                    print("------------------------------")
-                    print("Ok, we'll find you something else you might like!")
-                    print("------------------------------")
+                print("This is the movie you get and you don't get upset: ", rec_title)
+                print("People gave this movie a rating of ", rec_rating)
+                print("------------------------------")                    
+            elif(from_list == "movies") and (len(movies) > (index + 1)):
+                print("------------------------------")
+                print("Ok, we'll find you something else you might like!")
+                print("------------------------------")
 
-                    rec_title = movies[index]["original_title"]
-                    rec_rating = movies[index]["vote_average"]
-                    poster = movies[index]["poster_path"]
+                rec_title = movies[index]["original_title"]
+                rec_rating = movies[index]["vote_average"]
+                poster = movies[index]["poster_path"]
 
-                    print("This is the movie you get and you don't get upset: ", rec_title)
-                    print("People gave this movie a rating of ", rec_rating)
-                    print("------------------------------")                    
-                else:
-                    print("------------------------------")
-                    print("We're sorry! No other movies that matched the specified criteria. Try running again with different criteria.")
-                    break
-            elif(from_list == "matching_genres"):
-                if(len(matching_genres) > (index + 1)):
-                    print("------------------------------")
-                    print("Ok, we'll find you something else you might like!")
-                    print("------------------------------")
+                print("This is the movie you get and you don't get upset: ", rec_title)
+                print("People gave this movie a rating of ", rec_rating)
+                print("------------------------------")                    
+            elif(from_list == "matching_genres") and (len(matching_genres) > (index + 1)):
+                print("------------------------------")
+                print("Ok, we'll find you something else you might like!")
+                print("------------------------------")
 
-                    rec_title = matching_genres[index]["original_title"]
-                    rec_rating = matching_genres[index]["vote_average"]
+                rec_title = matching_genres[index]["original_title"]
+                rec_rating = matching_genres[index]["vote_average"]
 
-                    print("This is the movie you get and you don't get upset: ", rec_title)
-                    print("People gave this movie a rating of ", rec_rating)
-                    print("------------------------------")                    
-                else:
-                    print("------------------------------")
-                    print("We're sorry! No other movies that matched the specified criteria. Try running again with different criteria.")
-                    break
+                print("This is the movie you get and you don't get upset: ", rec_title)
+                print("People gave this movie a rating of ", rec_rating)
+                print("------------------------------")                    
             else:
-                print("We're sorry, no additional movies can be provided. Please try again.")
+                print("------------------------------")
+                print("We're sorry! No other movies that matched the specified criteria. Try running again with different criteria.")
                 break
         else:
             print("Invalid input. Please enter 'Y' or 'N'")
