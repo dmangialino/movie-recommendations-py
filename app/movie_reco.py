@@ -136,10 +136,12 @@ if __name__ == "__main__":
         random.shuffle(movies_block)
         rec_title = movies_block[0]["original_title"]
         rec_rating = movies_block[0]["vote_average"]
+        poster = movies_block[0]["poster_path"]
     elif(len(movies) > 0):
         random.suffle(movies)
         rec_title = movies[0]["original_title"]
         rec_rating = movies[0]["vote_average"]
+        poster = movies[0]["poster_path"]
     else:
         # No movies match criteria
         # Randomly select movie from the CSV dataset
@@ -181,6 +183,11 @@ if __name__ == "__main__":
 
    
 # SEND EMAIL RECEIPT
+# Add poster path here
+poster_path = f"https://image.tmdb.org/t/p/w500/{poster}"
+# print(poster_path)
+
+# breakpoint
 
 wants_email = input("Would you like an email receipt of your recommendation? (Y/N)? ").strip()
 if wants_email.lower() in ['y','yes']:
