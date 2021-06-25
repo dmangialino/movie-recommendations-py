@@ -199,7 +199,9 @@ if send_email:
     "input_age": input_age,
     "input_block": input_block,
     "rec_title": rec_title,
+    "rec_rating": rec_rating,
     } 
+
 
     client = SendGridAPIClient(SENDGRID_API_KEY)
     print("CLIENT:", type(client))
