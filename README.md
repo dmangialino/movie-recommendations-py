@@ -147,6 +147,16 @@ The app will then generate your first recommendation! If you are not happy with 
 
 After your recommendation is finalized, you will be asked if you would like an **email receipt **of your recommendation. If the answer is yes, you will be prompted to enter your email address, then you will receive an email receipt of your personalized recommendation.
 
+------------
+
+## Testing the Program
+
+You can also test the program to ensure the logic is running correctly, by navigating to the repo in the command line and entering the below command:
+
+```
+pytest
+```
+Running the above command will test the code's logic, and ensure that everything is functioning properly and running smoothly. 
 
 ## Third Party Datasets and APIs Used
 
