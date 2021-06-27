@@ -167,8 +167,7 @@ if __name__ == "__main__":
         poster = movies[0]["poster_path"]
     else:
         # No movies match criteria
-        # Randomly select movie from the CSV dataset
-                
+        # Randomly select movie from the CSV dataset                
         from_list = "matching_genres"
 
         csv_filepath = "data/tmdb_5000_movies.csv"      
@@ -243,10 +242,6 @@ if __name__ == "__main__":
                 rec_title = results[0]
                 rec_rating = results[1]
                 poster = results[2]
-
-                print("This is the movie you get and you don't get upset: ", rec_title)
-                print("People gave this movie a rating of ", rec_rating)
-                print("------------------------------------------------------------")  
 
                 print("This is the movie you get and you don't get upset: ", rec_title)
                 print("People gave this movie a rating of ", rec_rating)

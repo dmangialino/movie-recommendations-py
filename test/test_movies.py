@@ -9,6 +9,8 @@ def test_fetch_movies():
         assert "original_title" in list(mov.keys())
     for mov in movies:
         assert "vote_average" in list(mov.keys())
+    for mov in movies:
+        assert "poster_path" in list(mov.keys())
     # The below fails...
     #   ... will add error handling to script to handle situations in which movie does not have release date to address
     #for mov in movies: 
