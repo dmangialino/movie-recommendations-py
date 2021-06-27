@@ -35,6 +35,10 @@ def get_new_rec(movies_list, index):
     results.append(rec_rating)
     results.append(poster)
 
+    print(type(results[0]))
+    print(type(results[1]))
+    print(type(results[2]))
+
     return results     
 
 

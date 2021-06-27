@@ -1,4 +1,5 @@
 from app.movie_reco import fetch_movie_genre
+from app.movie_reco import get_new_rec
 
 def test_fetch_movies():
     movies = fetch_movie_genre(28)
@@ -16,3 +17,11 @@ def test_fetch_movies():
     #for mov in movies: 
     #    assert "release_date" in list(mov.keys())
 
+
+def test_get_new_rec():
+    movies = fetch_movie_genre(28)
+    results = get_new_rec(movies, 1)
+    assert isinstance(results[0], str)
+    assert isinstance(results[1], float)
+    assert isinstance(results[2], str)
+    
