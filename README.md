@@ -193,5 +193,5 @@ This repo uses an MIT license
 
 ![Python Line Break - enjoy](https://user-images.githubusercontent.com/84421118/123558539-c82c9b00-d764-11eb-92c8-ba2ab87bf703.png)
 
-### Enjoy your Python Personalized Movie Reco!
+### Enjoy your Python Personalized Movie Reccomendation!
 
