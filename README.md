@@ -1,11 +1,19 @@
 # movie-recommendations-py
 
-# Set up virtual environment
+
+
+![Python Personalized Movies  psd](https://user-images.githubusercontent.com/84421118/123532787-41cd7600-d6de-11eb-9b50-28bc45fcc5ea.jpg)
+
+#### Welcome to the Python Personalized Movie Recos app. If you're in need of a movie recommendation, this is the tool for you!
+
+------------
+
+
+## Set up virtual environment
 
 Setup a virtual environment using the below command:
-```sh
+```
 conda create -n movie-recs-env python=3.8
-
 ```
 
 Then activate the virtual environment using the below command:
@@ -16,20 +24,24 @@ conda activate movie-recs-env
 
 
 
-# Install packages
+## Install packages
 
 ```
 pip install -r requirements.txt
 ```
 
-# Create a TMBD API Key
-This tool uses movie information from the TMDB API, so you will need ot set up a TMDB API Key to use this tool. Create a TMDB account via https://www.themoviedb.org/signup and generate an API key. You will then need to store this API key later in a .env file.
+## Create a TMBD API Key
+This tool uses movie information from the **TMDB API,** so you will need to set up a TMDB API Key to use this tool. Create a TMDB account via https://www.themoviedb.org/signup and generate an API key. You will then need to store this API key later in a .env file (*instructions below*).
 
 
 ## Configuring Email Integration
-Create a SendGrid account via https://signup.sendgrid.com/ and generate an API key. You will then need to store this API key later in a .env file.
+Create a **SendGrid **account via https://signup.sendgrid.com/ and generate an API key. *You will then need to store this API key later in a .env file.*
 
-Once setting up your account, select Email API and create your own Dynamic Template. On the Code page, paste the below code and ensure you swap in the name of your tool in the line that says "Thank you for using our Python Personalized Movie Recos tool!" Also ensure you swap out the image link with a link to your own logo:
+Once setting up your account, select **Email API **and create your own **Dynamic Template**. Make note of the **Template ID,** as you will need to store this in your .enc file later. 
+
+Aftre creating the Dynamic Template, select **Add Version**, then select **Blank Template**, and then select **Code Editor**.
+
+Navigate to the **Code** page of the Dynamic Template, and paste the below code:
 
 ```
 <!DOCTYPE html>
@@ -56,10 +68,9 @@ Once setting up your account, select Email API and create your own Dynamic Templ
 </body>
 
 </html>
-
 ```
 
-On the Test Data page, paste the below code. You will not need to make any changes, unless you want the receipt to pull in any information:
+Next, go to the **Test Data** page and paste the below code:
 
 ```
 {
@@ -71,32 +82,87 @@ On the Test Data page, paste the below code. You will not need to make any chang
     "poster_path": "https://image.tmdb.org/t/p/w500//tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg"
 
 }
-
 ```
+Lastly, select **Settings** on the left-hand side of the screen, navigate to **Subject**, and paste "*Your Python Personalized Movie Reco*"
+
+Make sure that you hit save at the top of the screen.
 
 
 ## Configuring Environment Variables
-In the root directory of your local repository, create a new file called ".env", and update the contents of the ".env" file with the below information:
+In the root directory of your local repository, create a new file called ".env", and update the contents of the ".env" file to include the below information:
+
+> **TMBD_API_KEY ** = "enter your TMDB API key here"
+
+> **SENDGRID_API_KEY** = "enter your SendGrid API key here"
+> **SENDGRID_TEMPLATE_ID **= "enter your Dynamic Template ID here"
+> **SENDER_ADDRESS** = "enter email address you would like email reco sent to"
+
+*Note your SENDER_ADDRESS email should match the email used to setup your SendGrid account*
+
+## Running the App
+
+After following the above directions, you're ready to run the application and get your personalized movie reco!
+
+After you have completed the below list, you're ready to run the game:
+>[ ]  Downloaded the repo to your local computer
+>[ ] Navigated to the repo in the command line
+>[ ] Setup your virtual environment
+>[ ] Installed the requirements.txt file
+>[ ] Generated a TMDB API key
+>[ ] Set up your SendGrid account and created a dynamic email template
+>[ ] Configured your environment variables*
+
+To run the game, enter the following command:
+
 
 ```
-TMBD_API_KEY  = "enter TMDB API key here"
+python app/movie_reco.py
 ```
-```
-SENDGRID_API_KEY = "enter API key"
-SENDGRID_TEMPLATE_ID = "enter key to dynamic template"
-SENDER_ADDRESS = "enter email address"
-```
+You will then be prompted to select a **genre** from the following list:
+>Action
+>Adventure
+>Animation
+>Comedy
+>Crime
+>Documentary
+>Drama
+>Family
+>Fantasy
+>History
+>Horror
+>Music
+>Mystery
+>Romance
+>Science Fiction
+>TV Movie
+>Thriller
+>War
+>Western
+
+After selecting a genre, you will be prompted to select if you would like a **recently released film** (*film released in the past two years*).
+
+Next, you will be prompted to select if you would like a **blockbuster** (*a popular film with a 7+ rating according to TMDB*).
+
+The app will then generate your first recommendation! If you are not happy with your selection, you can say you would like another recommendation until you are happy with your selection.
+
+After your recommendation is finalized, you will be asked if you would like an **email receipt **of your recommendation. If the answer is yes, you will be prompted to enter your email address, then you will receive an email receipt of your personalized recommendation.
 
 
-# Third Party Datasets and APIs Used
+## Third Party Datasets and APIs Used
 
-## Movie Data Pulled from TMDb API
-Please note that movie recommendations were sourced using data from the TMDB APi:
-```
-https://www.themoviedb.org/documentation/api
-```
-and from TMDB 5000 Movie Dataset CSV data file:
+Please note that movie recommendations were sourced using data from the **TMDB APi**:
 
-```
-https://www.kaggle.com/tmdb/tmdb-movie-metadata
-```
+> https://www.themoviedb.org/documentation/api
+
+and from **TMDB 5000 Movie Dataset** CSV data file:
+
+> https://www.kaggle.com/tmdb/tmdb-movie-metadata
+
+## License
+
+This repo uses an MIT license
+
+
+------------
+
+### Enjoy your Python Personalized Movie Reco!
