@@ -268,7 +268,7 @@ if __name__ == "__main__":
     # Add poster path here
     if(from_list == "movies_block") or (from_list == "movies"):
         poster_path = f"https://image.tmdb.org/t/p/w500/{poster}"
-        # print(poster_path)
+        #print(poster_path)
 
     # breakpoint
 
@@ -301,6 +301,7 @@ if __name__ == "__main__":
         "input_block": input_block,
         "rec_title": rec_title,
         "rec_rating": rec_rating,
+        "poster_path": poster_path,
         } 
 
 
