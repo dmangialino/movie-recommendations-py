@@ -143,7 +143,7 @@ if __name__ == "__main__":
         poster = movies_block[0]["poster_path"]
     elif(len(movies) > 0):
         from_list = "movies"
-        random.suffle(movies)
+        random.shuffle(movies)
         rec_title = movies[0]["original_title"]
         rec_rating = movies[0]["vote_average"]
         poster = movies[0]["poster_path"]
