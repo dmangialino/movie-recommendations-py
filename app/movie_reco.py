@@ -80,8 +80,8 @@ if __name__ == "__main__":
     #  ... and those with release date more than 720 days from today to the "old" list
     # Includes "if 'release_date' in n" statement to handle any movie entries that do not have a release date
     for n in movies:
-        if "release_date" in n:
-            date_time_obj = datetime.datetime.strptime(n['release_date'], '%Y-%m-%d')
+        if len(n["release_date"]) > 0:
+            date_time_obj = datetime.datetime.strptime(n["release_date"], "%Y-%m-%d")
             if(today - date_time_obj).days < 720:
                 new.append(n)
             else:
@@ -117,14 +117,14 @@ if __name__ == "__main__":
     #  ... if user preference for blockbuster was "Y", appends movies with "vote_average" > 7.0 to "movies_block" list
     #  ... if user preference for blockbuster was "N", appends movies with "vote_average" <= 7.0 to "movies_block" list
     # Casts n["vote_average"] value and "7.0" to which it is compared to floats to ensure comparison is possible
-    # Both paths include a "if 'release_date' in n" check to handle any movie entries that may not have a "release_date" key 
+    # Both paths include a "if 'vote_average' in n" check to handle any movie entries that may not have a "vote_average" key 
     if(input_block == "Y"):
         for n in movies:
-            if("release_date" in n) and (float(n["vote_average"]) > float(7.0)):
+            if("vote_average" in n) and (float(n["vote_average"]) > float(7.0)):
                 movies_block.append(n)
     elif(input_block == "N"):
         for n in movies:
-            if("release_date" in n) and (float(n["vote_average"]) <= float(7.0)):
+            if("vote_average" in n) and (float(n["vote_average"]) <= float(7.0)):
                 movies_block.append(n)
     else:
         print("Invalid input. Proceeding with all movies that met other specified criteria.")
