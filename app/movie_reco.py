@@ -26,16 +26,7 @@ def get_new_rec(movies_list, index):
     print("Ok, we'll find you something else you might like!")
     print("------------------------------------------------------------")
 
-    rec_title = movies_list[index]["original_title"]
-    rec_rating = movies_list[index]["vote_average"]
-    poster = movies_list[index]["poster_path"]
-
-    results = []
-    results.append(rec_title)
-    results.append(rec_rating)
-    results.append(poster)
-
-    return results     
+    return [movies_list[index]["original_title"], movies_list[index]["vote_average"], movies_list[index]["poster_path"]]  
 
 
 
@@ -234,7 +225,7 @@ if __name__ == "__main__":
 
                 print("This is the movie you get and you don't get upset: ", rec_title)
                 print("People gave this movie a rating of ", rec_rating)
-                print("------------------------------------------------------------")                    
+                print("------------------------------------------------------------")                
             # Original recommendation came from "movies" list and there is at least one more movie in the list
             elif(from_list == "movies") and (len(movies) > index):
                 results = get_new_rec(movies, index)
