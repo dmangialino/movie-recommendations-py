@@ -22,20 +22,26 @@ def fetch_movie_genre(genre_id):
 
 # Function to obtain next recommendation in list of matching movies
 def get_new_rec(movies_list, index):
+    """Returns list containing movie title, rating and poster path"""
     print("------------------------------------------------------------")
     print("Ok, we'll find you something else you might like!")
     print("------------------------------------------------------------")
 
-    rec_title = movies_list[index]["original_title"]
-    rec_rating = movies_list[index]["vote_average"]
-    poster = movies_list[index]["poster_path"]
+## collapsing code into one line
+    return [movies_list[index]["original_title"], movies_list[index]["vote_average"], movies_list[index]["poster_path"]]
 
-    results = []
-    results.append(rec_title)
-    results.append(rec_rating)
-    results.append(poster)
+    # rec_title = movies_list[index]["original_title"]
+    # rec_rating = movies_list[index]["vote_average"]
+    # poster = movies_list[index]["poster_path"]
 
-    return results     
+    #results = []
+    #results.append(rec_title)
+    #results.append(rec_rating)
+    #results.append(poster)
+
+    #results = [rec_title, rec_rating, poster]
+
+    #return results     
 
 
 

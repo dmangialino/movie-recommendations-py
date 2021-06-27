@@ -4,7 +4,7 @@
 
 ![Python Personalized Movies Recs  psd](https://user-images.githubusercontent.com/84421118/123555432-ac6cc900-d753-11eb-9d41-69ccd88dd4b8.jpg)
 
-#### Welcome to the Python Personalized Movie Recos app. If you're in need of a movie recommendation, this is the tool for you!
+#### Welcome to the Python Personalized Movie Recs app. If you're in need of a movie recommendation, this is the tool for you!
 
 ------------
 
@@ -58,7 +58,7 @@ Navigate to the **Code** page of the Dynamic Template, and paste the below code:
 
 <body style="color: rgb(0, 0, 0); background-color: rgb(253, 245, 255);">
     <p><img src="http://cdn.mcauto-images-production.sendgrid.net/b272db5d20876ea6/fa8f373e-8e4e-4f3b-aa55-6c4d54a820ab/750x422.jpg"></p>
-    <h2><span style="font-family: Verdana, Geneva, sans-serif;">Thank you for using our Python Personalized Movie Recos tool!</span></h2>
+    <h2><span style="font-family: Verdana, Geneva, sans-serif;">Thank you for using our Python Personalized Movie Recs tool!</span></h2>
     <p><span style="font-family: Verdana, Geneva, sans-serif;">We based your personalized recommendations based on your below inputs:</span></p>
     <p style="margin-left: 20px; line-height: 1;"><span style="font-family: Verdana, Geneva, sans-serif;"><strong>Genre:&nbsp;</strong>{{input_genre}}</span></p>
     <p style="margin-left: 20px; line-height: 1;"><span style="font-family: Verdana, Geneva, sans-serif;"><strong>Recency:&nbsp;</strong>{{input_age}}</span></p>
@@ -88,7 +88,7 @@ Next, go to the **Test Data** page and paste the below code:
 
 }
 ```
-Lastly, select **Settings** on the left-hand side of the screen, navigate to **Subject**, and paste "*Your Python Personalized Movie Reco*"
+Lastly, select **Settings** on the left-hand side of the screen, navigate to **Subject**, and paste "*Your Python Personalized Movie Rec*"
 
 Make sure that you hit save at the top of the screen.
 
@@ -103,7 +103,7 @@ In the root directory of your local repository, create a new file called ".env",
 
 > **SENDGRID_API_KEY** = "enter your SendGrid API key here" <br >
 > **SENDGRID_TEMPLATE_ID** = "enter your Dynamic Template ID here" <br >
-> **SENDER_ADDRESS** = "enter email address you would like email reco sent to" <br >
+> **SENDER_ADDRESS** = "enter email address you would like email rec sent to" <br >
 
 *Note your SENDER_ADDRESS email should match the email used to setup your SendGrid account*
 
@@ -112,7 +112,7 @@ In the root directory of your local repository, create a new file called ".env",
 
 ## Running the App
 
-After following the above directions, you're ready to run the application and get your personalized movie reco!
+After following the above directions, you're ready to run the application and get your personalized movie reccomendation!
 
 After you have completed the below list, you're ready to run the game:
 >[ ]  Downloaded the repo to your local computer <br />
