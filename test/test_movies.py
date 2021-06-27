@@ -9,7 +9,8 @@ def test_fetch_movies():
         assert "original_title" in list(mov.keys())
     for mov in movies:
         assert "vote_average" in list(mov.keys())
-    # This fails, will add error handling to script to handle situations in which movie does not have release date to address
+    # The below fails...
+    #   ... will add error handling to script to handle situations in which movie does not have release date to address
     #for mov in movies: 
     #    assert "release_date" in list(mov.keys())
 
