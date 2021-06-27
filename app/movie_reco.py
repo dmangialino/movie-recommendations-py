@@ -20,6 +20,24 @@ def fetch_movie_genre(genre_id):
     movies = parsed_response["results"]
     return movies
 
+# Function to obtain next recommendation in list of matching movies
+def get_new_rec(movies_list, index):
+    print("------------------------------------------------------------")
+    print("Ok, we'll find you something else you might like!")
+    print("------------------------------------------------------------")
+
+    rec_title = movies_list[index]["original_title"]
+    rec_rating = movies_list[index]["vote_average"]
+    poster = movies_list[index]["poster_path"]
+
+    results = []
+    results.append(rec_title)
+    results.append(rec_rating)
+    results.append(poster)
+
+    return results     
+
+
 
 if __name__ == "__main__":
 
@@ -80,8 +98,8 @@ if __name__ == "__main__":
     #  ... and those with release date more than 720 days from today to the "old" list
     # Includes "if 'release_date' in n" statement to handle any movie entries that do not have a release date
     for n in movies:
-        if "release_date" in n:
-            date_time_obj = datetime.datetime.strptime(n['release_date'], '%Y-%m-%d')
+        if("release_date" in n) and (len(n["release_date"]) > 0):
+            date_time_obj = datetime.datetime.strptime(n["release_date"], "%Y-%m-%d")
             if(today - date_time_obj).days < 720:
                 new.append(n)
             else:
@@ -117,14 +135,14 @@ if __name__ == "__main__":
     #  ... if user preference for blockbuster was "Y", appends movies with "vote_average" > 7.0 to "movies_block" list
     #  ... if user preference for blockbuster was "N", appends movies with "vote_average" <= 7.0 to "movies_block" list
     # Casts n["vote_average"] value and "7.0" to which it is compared to floats to ensure comparison is possible
-    # Both paths include a "if 'release_date' in n" check to handle any movie entries that may not have a "release_date" key 
+    # Both paths include a "if 'vote_average' in n" check to handle any movie entries that may not have a "vote_average" key 
     if(input_block == "Y"):
         for n in movies:
-            if("release_date" in n) and (float(n["vote_average"]) > float(7.0)):
+            if("vote_average" in n) and (float(n["vote_average"]) > float(7.0)):
                 movies_block.append(n)
     elif(input_block == "N"):
         for n in movies:
-            if("release_date" in n) and (float(n["vote_average"]) <= float(7.0)):
+            if("vote_average" in n) and (float(n["vote_average"]) <= float(7.0)):
                 movies_block.append(n)
     else:
         print("Invalid input. Proceeding with all movies that met other specified criteria.")
@@ -143,16 +161,16 @@ if __name__ == "__main__":
         poster = movies_block[0]["poster_path"]
     elif(len(movies) > 0):
         from_list = "movies"
-        random.suffle(movies)
+        random.shuffle(movies)
         rec_title = movies[0]["original_title"]
         rec_rating = movies[0]["vote_average"]
         poster = movies[0]["poster_path"]
     else:
         # No movies match criteria
-        # Randomly select movie from the CSV dataset
+        # Randomly select movie from the CSV dataset                
         from_list = "matching_genres"
 
-        csv_filepath = "data/tmdb_5000_movies.csv"
+        csv_filepath = "data/tmdb_5000_movies.csv"      
         movies_df = read_csv(csv_filepath)
         
         # Convert dataframe to dictionary for easier processing
@@ -170,7 +188,6 @@ if __name__ == "__main__":
             #  ...i.e., "TV MOVIE" is formatted as "TV Movie" in CSV and "search_genre" formatting must match      
             splt = input_genre.split("")
             search_genre = splt[0]+""+splt[1].capitalize()
-            #print(search_genre)
         
         # Iterate through movies from CSV, appending the movie to "matching_genres" list if the genre matches that 
         #  ... specified by the user
@@ -208,33 +225,29 @@ if __name__ == "__main__":
             index = index + 1
             
             # Original recommendation came from "movies_block" list and there is at least one more movie in the list 
-            if(from_list == "movies_block") and (len(movies_block) > (index + 1)):
-                print("------------------------------------------------------------")
-                print("Ok, we'll find you something else you might like!")
-                print("------------------------------------------------------------")
+            if(from_list == "movies_block") and (len(movies_block) > index):
+                results = get_new_rec(movies_block, index)
 
-                rec_title = movies_block[index]["original_title"]
-                rec_rating = movies_block[index]["vote_average"]
-                poster = movies_block[index]["poster_path"]
+                rec_title = results[0]
+                rec_rating = results[1]
+                poster = results[2]
 
                 print("This is the movie you get and you don't get upset: ", rec_title)
                 print("People gave this movie a rating of ", rec_rating)
                 print("------------------------------------------------------------")                    
             # Original recommendation came from "movies" list and there is at least one more movie in the list
-            elif(from_list == "movies") and (len(movies) > (index + 1)):
-                print("------------------------------------------------------------")
-                print("Ok, we'll find you something else you might like!")
-                print("------------------------------------------------------------")
+            elif(from_list == "movies") and (len(movies) > index):
+                results = get_new_rec(movies, index)
 
-                rec_title = movies[index]["original_title"]
-                rec_rating = movies[index]["vote_average"]
-                poster = movies[index]["poster_path"]
+                rec_title = results[0]
+                rec_rating = results[1]
+                poster = results[2]
 
                 print("This is the movie you get and you don't get upset: ", rec_title)
                 print("People gave this movie a rating of ", rec_rating)
                 print("------------------------------------------------------------")                    
             # Original recommendation came from "matching_genres" list and there is at least one more movie in the list
-            elif(from_list == "matching_genres") and (len(matching_genres) > (index + 1)):
+            elif(from_list == "matching_genres") and (len(matching_genres) > index):
                 print("------------------------------")
                 print("Ok, we'll find you something else you might like!")
                 print("------------------------------------------------------------")
@@ -327,4 +340,5 @@ if __name__ == "__main__":
             print("Thank you!")
     else:
         print("Thank you!")
+
 
