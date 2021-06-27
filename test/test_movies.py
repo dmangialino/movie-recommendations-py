@@ -24,4 +24,3 @@ def test_get_new_rec():
     assert isinstance(results[0], str)
     assert isinstance(results[1], float)
     assert isinstance(results[2], str)
-    
