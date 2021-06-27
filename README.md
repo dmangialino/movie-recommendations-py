@@ -36,20 +36,6 @@ pip install -r requirements.txt
 ## Create a TMBD API Key
 This tool uses movie information from the **TMDB API,** so you will need to set up a TMDB API Key to use this tool. Create a TMDB account via https://www.themoviedb.org/signup and generate an API key. You will then need to store this API key later in a .env file (*instructions below*).
 
-![Python Line Break - tesing](https://user-images.githubusercontent.com/84421118/123558485-7edc4b80-d764-11eb-968f-1de0484a012d.png)
-
-## Testing the Program
-
-You can also test the program to ensure the logic is running correctly, by navigating to the repo in the command line and entering the below command:
-
-```
-pytest
-```
-Running the above command will test the code's logic, and ensure that everything is functioning properly and running smoothly. 
-
-Please also note that the repo incorporates a Continuous Integration service called Travis CI, which will run tests every time a pull request is opened. Travis CI can be setup using the following link, but it has already been integrated into the repo so you don't need to take any further steps here: 
-
-https://www.travis-ci.com/
 
 ![Python Line Break - sendgrid](https://user-images.githubusercontent.com/84421118/123558461-58b6ab80-d764-11eb-8ed4-e2f6c1af6007.png)
 
@@ -121,6 +107,28 @@ In the root directory of your local repository, create a new file called ".env",
 
 *Note your SENDER_ADDRESS email should match the email used to setup your SendGrid account*
 
+
+![Python Line Break - tesing](https://user-images.githubusercontent.com/84421118/123558485-7edc4b80-d764-11eb-968f-1de0484a012d.png)
+
+## Testing the Program
+
+You can also test the program to ensure the logic is running correctly, by navigating to the root directory in the command line and entering the below command:
+
+```
+pytest
+```
+Running the above command will test the code's logic, and ensure that everything is functioning properly and running smoothly. 
+
+Please also note that the repo incorporates a Continuous Integration service called **Travis CI**, which will run tests every time a pull request is opened. Travis CI can be setup using the following link, but it has already been integrated into the repo so you don't need to take any further steps here: 
+
+> https://www.travis-ci.com/
+
+Lastly, please note that this repo has been integrated with **Code Climate** to run checks on pull requests. While nothing is needed ont he user's end, you can integrate Code Climate on your end by creating a account and linking it to your GitHub repo:
+
+> https://codeclimate.com/oss/dashboard
+
+
+
 ![Python Line Break - usage](https://user-images.githubusercontent.com/84421118/123558472-7257f300-d764-11eb-8270-a50705d5074d.png)
 
 
@@ -170,7 +178,7 @@ Next, you will be prompted to select if you would like a **blockbuster** (*a pop
 
 The app will then generate your first recommendation! If you are not happy with your selection, you can say you would like another recommendation until you are happy with your selection.
 
-After your recommendation is finalized, you will be asked if you would like an **email receipt **of your recommendation. If the answer is yes, you will be prompted to enter your email address, then you will receive an email receipt of your personalized recommendation.
+After your recommendation is finalized, you will be asked if you would like an **email receipt** of your recommendation. If the answer is yes, you will be prompted to enter your email address, then you will receive an email receipt of your personalized recommendation.
 
 
 ![Python Line Break - Accreditation](https://user-images.githubusercontent.com/84421118/123558491-87cd1d00-d764-11eb-8049-6ef25facd1eb.png)
@@ -194,3 +202,5 @@ This repo uses an MIT license
 ![Python Line Break - enjoy](https://user-images.githubusercontent.com/84421118/123558539-c82c9b00-d764-11eb-92c8-ba2ab87bf703.png)
 
 ### Enjoy your Python Personalized Movie Reccomendation!
+
+
