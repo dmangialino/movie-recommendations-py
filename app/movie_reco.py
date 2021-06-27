@@ -20,6 +20,33 @@ def fetch_movie_genre(genre_id):
     movies = parsed_response["results"]
     return movies
 
+# Function to generate list of recommendations based on CSV 
+def create_reco_csv(csv_file, genre_id):
+    movies_df = read_csv(csv_file)
+        
+    # Convert dataframe to dictionary for easier processing
+    movies_csv = movies_df.to_dict("records")
+
+    # Create empty list to store movies from CSV (now in "movies_csv dictionary") that match specified genre
+    matching_genres = []
+    search_genre = ""
+
+    # Format "genre_id" string from all capital to title case (except "TV Movie") to match genre format in CSV
+    if(genre_id != "TV MOVIE"):
+        search_genre = genre_id.title()
+    else:
+        # String concateation to translate "TV MOVIE" to "TV Movie" to find matches in CSV
+        #  ...i.e., "TV MOVIE" is formatted as "TV Movie" in CSV and "search_genre" formatting must match      
+        splt = genre_id.split("")
+        search_genre = splt[0]+""+splt[1].capitalize()
+        
+    # Iterate through movies from CSV, appending the movie to "matching_genres" list if the genre matches that 
+    #  ... specified by the user
+    for n in movies_csv:
+        if(search_genre in n["genres"]):
+            matching_genres.append(n)
+    
+    return matching_genres
 
 if __name__ == "__main__":
 
@@ -80,7 +107,7 @@ if __name__ == "__main__":
     #  ... and those with release date more than 720 days from today to the "old" list
     # Includes "if 'release_date' in n" statement to handle any movie entries that do not have a release date
     for n in movies:
-        if len(n["release_date"]) > 0:
+        if("release_date" in n) and (len(n["release_date"]) > 0):
             date_time_obj = datetime.datetime.strptime(n["release_date"], "%Y-%m-%d")
             if(today - date_time_obj).days < 720:
                 new.append(n)
@@ -150,33 +177,38 @@ if __name__ == "__main__":
     else:
         # No movies match criteria
         # Randomly select movie from the CSV dataset
+        
+        print("IN THE ELSE STATEMENT!!!!!!!!!")
+        
         from_list = "matching_genres"
 
         csv_filepath = "data/tmdb_5000_movies.csv"
-        movies_df = read_csv(csv_filepath)
+        matching_genres = create_reco_csv(csv_filepath, input_genre)
         
-        # Convert dataframe to dictionary for easier processing
-        movies_csv = movies_df.to_dict("records")
+        #movies_df = read_csv(csv_filepath)
+        
+        ## Convert dataframe to dictionary for easier processing
+        #movies_csv = movies_df.to_dict("records")
 
         # Create empty list to store movies from CSV (now in "movies_csv dictionary") that match specified genre
-        matching_genres = []
-        search_genre = ""
+        #matching_genres = []
+        #search_genre = ""
 
         # Format "input_genre" string from all capital to title case (except "TV Movie") to match genre format in CSV
-        if(input_genre != "TV MOVIE"):
-            search_genre = input_genre.title()
-        else:
-            # String concateation to translate "TV MOVIE" to "TV Movie" to find matches in CSV
-            #  ...i.e., "TV MOVIE" is formatted as "TV Movie" in CSV and "search_genre" formatting must match      
-            splt = input_genre.split("")
-            search_genre = splt[0]+""+splt[1].capitalize()
-            #print(search_genre)
+        #if(input_genre != "TV MOVIE"):
+        #    search_genre = input_genre.title()
+        #else:
+        #    # String concateation to translate "TV MOVIE" to "TV Movie" to find matches in CSV
+        #    #  ...i.e., "TV MOVIE" is formatted as "TV Movie" in CSV and "search_genre" formatting must match      
+        #    splt = input_genre.split("")
+        #    search_genre = splt[0]+""+splt[1].capitalize()
+        #    #print(search_genre)
         
-        # Iterate through movies from CSV, appending the movie to "matching_genres" list if the genre matches that 
-        #  ... specified by the user
-        for n in movies_csv:
-            if(search_genre in n["genres"]):
-                matching_genres.append(n)
+        ## Iterate through movies from CSV, appending the movie to "matching_genres" list if the genre matches that 
+        ##  ... specified by the user
+        #for n in movies_csv:
+        #    if(search_genre in n["genres"]):
+        #        matching_genres.append(n)
 
         # Shuffle list of movies with matching genre from the CSV to provide random recommendation to the user
         random.shuffle(matching_genres)
