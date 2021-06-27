@@ -41,15 +41,18 @@ Once setting up your account, select Email API and create your own Dynamic Templ
 
 <body style="color: rgb(0, 0, 0); background-color: rgb(253, 245, 255);">
     <p><img src="http://cdn.mcauto-images-production.sendgrid.net/b272db5d20876ea6/d2801bf9-07ca-4198-a1ff-a35974fcd821/750x422.jpg"></p>
-    <h2>Thank you for using our Python Personalized Movie Recos tool!</h2>
-    <p>We based your personalized recommendations based on your below inputs:</p>
-    <p style="margin-left: 20px; line-height: 1;"><strong>Genre:&nbsp;</strong>{{input_genre}}</p>
-    <p style="margin-left: 20px; line-height: 1;"><strong>Recency:&nbsp;</strong>{{input_age}}</p>
-    <p style="margin-left: 20px; line-height: 1;"><strong>Blockbuster:</strong> {{input_block}}</p>
-    <p>Please see below for your personalized recommendations!</p>
-    <p style="margin-left: 20px; line-height: 1;"><strong>Recommended Movie:</strong> {{this.rec_title}}</p>
-    <p style="margin-left: 20px; line-height: 1;"><strong>People gave this movie a rating of: </strong>{{this.rec_rating}} </p>
-    <p>Please come back for more recommendations!</p>
+    <h2><span style="font-family: Verdana, Geneva, sans-serif;">Thank you for using our Python Personalized Movie Recos tool!</span></h2>
+    <p><span style="font-family: Verdana, Geneva, sans-serif;">We based your personalized recommendations based on your below inputs:</span></p>
+    <p style="margin-left: 20px; line-height: 1;"><span style="font-family: Verdana, Geneva, sans-serif;"><strong>Genre:&nbsp;</strong>{{input_genre}}</span></p>
+    <p style="margin-left: 20px; line-height: 1;"><span style="font-family: Verdana, Geneva, sans-serif;"><strong>Recency:&nbsp;</strong>{{input_age}}</span></p>
+    <p style="margin-left: 20px; line-height: 1;"><span style="font-family: Verdana, Geneva, sans-serif;"><strong>Blockbuster:</strong> {{input_block}}</span></p>
+    <p><span style="font-family: Verdana, Geneva, sans-serif;">Please see below for your personalized recommendations!</span></p>
+    <p style="margin-left: 20px; line-height: 1;"><span style="font-family: Verdana, Geneva, sans-serif;"><strong>Recommended Movie:</strong> {{this.rec_title}}</span></p>
+    <p style="margin-left: 20px; line-height: 1;"><span style="font-family: Verdana, Geneva, sans-serif;"><strong>People gave this movie a rating of:&nbsp;</strong>{{this.rec_rating}}</span></p>
+        <p><img src="{{this.poster_path}}"></p>
+    <p><span style="font-family: Verdana, Geneva, sans-serif;">Please come back for more recommendations!</span></p>
+    <hr>
+    <p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;line-height:13.5pt;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 12px;">Data from The Movie Database API (https://www.themoviedb.org/documentation/api) and Kaggle dataset (https://www.kaggle.com/tmdb/tmdb-movie-metadata)</span></p>
 </body>
 
 </html>
@@ -64,7 +67,9 @@ On the Test Data page, paste the below code. You will not need to make any chang
     "input_age": "Y",
     "input_block": "Y",
     "rec_title":"Avengers",
-    "rec_rating": "10.0"
+    "rec_rating": "10.0",
+    "poster_path": "https://image.tmdb.org/t/p/w500//tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg"
+
 }
 
 ```
@@ -86,9 +91,12 @@ SENDER_ADDRESS = "enter email address"
 # Third Party Datasets and APIs Used
 
 ## Movie Data Pulled from TMDb API
-
+Please note that movie recommendations were sourced using data from the TMDB APi:
+```
 https://www.themoviedb.org/documentation/api
+```
+and from TMDB 5000 Movie Dataset CSV data file:
 
-## CSV
-
-Add CSV link
+```
+https://www.kaggle.com/tmdb/tmdb-movie-metadata
+```
