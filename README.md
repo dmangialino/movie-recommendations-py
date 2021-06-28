@@ -204,3 +204,15 @@ This repo uses an MIT license
 ### Enjoy your Python Personalized Movie Reccomendation!
 
 
+## Running the Web App
+
+# Activate Flask
+
+# For Mac OS:
+FLASK_APP=hello.py flask run
+
+# For Windows OS:
+export FLASK_APP=hello.py
+
+# ... if `export` doesn't work for you, try `set` instead
+flask run
