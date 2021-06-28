@@ -266,7 +266,7 @@ if __name__ == "__main__":
 
 
 
-   
+
     ### Send email with recommended movie and details ###
 
     # Add poster path here
