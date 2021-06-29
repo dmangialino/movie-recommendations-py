@@ -11,6 +11,7 @@ load_dotenv()
 # Get TMDb API key from .env file
 TMBD_API_KEY = os.getenv("TMBD_API_KEY")
 
+
 # Function to call TMDb API to specified genre_id
 def fetch_movie_genre(genre_id):
     request_url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMBD_API_KEY}&with_genres={genre_id}&with_original_language=en"

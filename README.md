@@ -209,10 +209,9 @@ This repo uses an MIT license
 # Activate Flask
 
 # For Mac OS:
-FLASK_APP=hello.py flask run
+FLASK_APP=web_app.py flask run
 
 # For Windows OS:
-export FLASK_APP=hello.py
-
-# ... if `export` doesn't work for you, try `set` instead
+export FLASK_APP=web_app.py
 flask run
+# ... if `export` doesn't work for you, try `set` instead

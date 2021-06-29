@@ -1,4 +1,5 @@
-{% extends "layout.html" %}
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "movie_form" %}
 
 {% block content %}
 
@@ -7,6 +8,29 @@
     <p>Find a new movie without the hassle of scrolling through endless streaming services!</p>
 
     <form action="/movie/results" method="POST">
+        <label>Available Genres</label>
+        <lable>AVAILABLE GENRES:</lable>
+        Action,
+        Adventure,
+        Animation, <br>
+        Comedy,
+        Crime,
+        Documentary, <br>
+        Drama,
+        Family,
+        Fantasy, <br>
+        History,
+        Horror,
+        Music, <br>
+        Mystery,
+        Romance,
+        Science Fiction, <br>
+        TV Movie,
+        Thriller,
+        War,
+        Western
+        <br>
+
 
         <label>Select a Genre:</label>
         <input type="text" name="input_genre" placeholder="horror" value="horror">

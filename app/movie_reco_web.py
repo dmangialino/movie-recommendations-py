@@ -31,17 +31,16 @@ def generate_gen_list():
         genres.update({g["name"].upper():g["id"]})
 
     # Print list of available genres from which user can choose
-    print("AVAILABLE GENRES: ")
-    for genre in genres_list:
-        print(genre["name"])
-    
+    # print("AVAILABLE GENRES: ")
+    # for genre in genres_list:
+    #     print(genre["name"])
     return genres
 
 
 
 def get_variables():
     # Prompt user to input genre
-    generate_gen_list()
+    genres = generate_gen_list()
     print("________")
     while True:
         input_genre = input("Please enter a genre for a film you would like to see (select from list above): ").upper()
@@ -68,7 +67,8 @@ def get_variables():
 
 
 
-def new_movie(genre, age, blockbuster):
+def new_movie(input_genre, input_age, input_block):
+    genres = generate_gen_list()
 
     print("------------------------------")
 
@@ -137,7 +137,7 @@ def new_movie(genre, age, blockbuster):
         poster = movies_block[0]["poster_path"]
     elif(len(movies) > 0):
         from_list = "movies"
-        random.suffle(movies)
+        random.shuffle(movies)
         rec_title = movies[0]["original_title"]
         rec_rating = movies[0]["vote_average"] 
 
@@ -151,7 +151,8 @@ def new_movie(genre, age, blockbuster):
     print("------------------------------")
     print("Data from The Movie Database API (https://www.themoviedb.org/documentation/api)")
     print("------------------------------")
-    
+    poster_path = f"https://image.tmdb.org/t/p/w500/{poster}"
+    return [rec_title, rec_rating, poster_path]
 
 ### Send email with recommended movie and details ###
 # def send_email():
@@ -221,10 +222,16 @@ def new_movie(genre, age, blockbuster):
 
 if __name__ == "__main__":
     # Creating list of genres
-    genres = generate_gen_list()
+    # genres = generate_gen_list()
+    # print(genres)
     # Gathering User Inputs
     input_genre, input_age, input_block = get_variables()
+    # input_genre = input("please enter input genere")
+    # input_age = input("please enter Y or N")
+    # input_block = input("please enter block Y/nN ")
+    
     # Running movie suggestion app
     new_movie(input_genre, input_age, input_block)
+    
     # send email
     # send_email()
