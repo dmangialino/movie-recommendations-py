@@ -182,6 +182,30 @@ After your recommendation is finalized, you will be asked if you would like an *
 
 
 ![Python Line Break - Accreditation](https://user-images.githubusercontent.com/84421118/123558491-87cd1d00-d764-11eb-8049-6ef25facd1eb.png)
+## Running the Web App
+
+The Webb App is a user interface that can be run from the browser, it has the same inputs but uses a form rather than successive prompts.
+
+To initiate the web app you will need to activate flask:
+
+For Mac OS:
+```
+FLASK_APP=web_app.py flask run
+```
+for Windows
+```
+export FLASK_APP=web_app.py
+flask run
+```
+Pro-tip: if export does not work, try 'set' instead
+
+Once you have activated flask, copy the link below (or from the terminal):
+http://127.0.0.1:5000/
+
+Then navigate to the 'Movie Form' in the top left corner of the browser window.  This will take you to a submission form, where you will enter your selection criteria in the same format you would from the command line.
+
+If you don't like the selection you can click 'Need Another?' to redirect you back to the form.
+
 
 ## Third Party Datasets and APIs Used
 
@@ -202,14 +226,3 @@ This repo uses an MIT license
 ![Python Line Break - enjoy](https://user-images.githubusercontent.com/84421118/123558539-c82c9b00-d764-11eb-92c8-ba2ab87bf703.png)
 
 ### Enjoy your Python Personalized Movie Reccomendation!
-
-
-## Running the Web App
-
-# Activate Flask
-# For Mac OS:
-FLASK_APP=web_app.py flask run
-# For Windows OS:
-export FLASK_APP=web_app.py
-flask run
-# **if `export` doesn't work for you, try `set` instead
