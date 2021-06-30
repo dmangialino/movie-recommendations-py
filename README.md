@@ -185,7 +185,9 @@ After your recommendation is finalized, you will be asked if you would like an *
 
 ## Running the Web App
 
-In addition to running our *Python Personalized Movie Recs* tool in the command line, you can also run it using a **Graphical User Interphase (GUI)**. To use our tool in a GUI, enter the below commands in your command line based on your computer choice (mac vs windows):
+In addition to running our *Python Personalized Movie Recs* tool in the command line, you can also run it using a **Graphical User Interphase (GUI)** in your browser. The GUI requires the same inputs as the command line tool, but uses a form rather than successive prompts.
+
+To use our tool in a GUI, you will need to activate **flask** by entering the below commands in your command line based on your computer choice (mac vs windows):
 
 **For Mac OS:**
 ```
@@ -202,7 +204,7 @@ flask run
 
 Once you run the above commands, the command line will give you a **URL** (i.e. http://127.0.0.1:5000/) that you can then copy and paste into your browser. That URL will then take you to our tool in a web app.
 
-Once you open the web app, click the **"Movie Form"** in the top right hand corner of your screen to navigate to your user inputs section. Enter a genre, whether you 2ant a new movie, and whether you want a blockbuster, and then hit **submit.** 
+Once you open the web app, click the **"Movie Form"** in the top right hand corner of your screen to navigate to your user inputs section. Enter a genre, whether you want a new movie, and whether you want a blockbuster, and then hit **submit.** 
 
 > Note that similarly to when you run the tool in the command line, a recent film is defined as a film that has been released within the past two years, and a blockbuster is defined as a film with a 7+ rating according to TMDB.
 
