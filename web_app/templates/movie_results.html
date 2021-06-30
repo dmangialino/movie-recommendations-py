@@ -1,0 +1,23 @@
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "movie_results" %}
+
+{% block content %}
+
+    <h2>YOUR MOVIE SUGGESTION: </h2>
+
+    <!-- TODO: consider using a table instead of a list -->
+    <!-- TODO: consider adding images using the provided icon urls -->
+    <ul>
+    <p>Your Selection: {{results[0]}}</p>
+    <p>Viewers gave this film an average of: {{results[1]}}</p>
+    <p><img src="{{results[2]}}"></p>
+    <br>
+    <form action="/movie/form" method="GET">
+        <button>Need Another?</button>
+    </form>
+
+    <br>
+    <p>Data from The Movie Database API (https://www.themoviedb.org/documentation/api)</p><br>
+    </ul>
+
+{% endblock %}

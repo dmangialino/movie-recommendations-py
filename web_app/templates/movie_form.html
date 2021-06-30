@@ -1,0 +1,50 @@
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "movie_form" %}
+
+{% block content %}
+
+    <h2>Movie Selection Survey</h2>
+
+    <p>Find a new movie without the hassle of scrolling through endless streaming services!</p>
+
+    <form action="/movie/results" method="POST">
+        <h2>Available Genres:</h2>
+        Action,
+        Adventure,
+        Animation, <br>
+        Comedy,
+        Crime,
+        Documentary, <br>
+        Drama,
+        Family,
+        Fantasy, <br>
+        History,
+        Horror,
+        Music, <br>
+        Mystery,
+        Romance,
+        Science Fiction, <br>
+        TV Movie,
+        Thriller,
+        War,
+        Western
+        <br>
+        <br>
+
+
+        <label><b>Select a Genre: </b></label>
+        <input type="text" name="input_genre" placeholder="horror" value="horror">
+        <br>
+
+        <label><b>New Movie? (Y/N): </b></label>
+        <input type="text" name="input_age" placeholder="Y" value="Y">
+        <br>
+
+        <label><b>Block Buster Film? (Y/N): </b></label>
+        <input type="text" name="input_block" placeholder="Y" value="Y">
+        <br>
+
+        <button>Submit</button>
+    </form>
+
+{% endblock %}

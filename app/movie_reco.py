@@ -40,6 +40,7 @@ if __name__ == "__main__":
     genre_response = requests.get(genre_url)
     parsed_genre = json.loads(genre_response.text)
     genres_list = parsed_genre["genres"]
+    print(parsed_genre)
     genres = {}
     for g in genres_list:
         genres.update({g["name"].upper():g["id"]})
