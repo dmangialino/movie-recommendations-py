@@ -4,7 +4,7 @@
 
 ![Python Personalized Movies Recs  psd](https://user-images.githubusercontent.com/84421118/123555432-ac6cc900-d753-11eb-9d41-69ccd88dd4b8.jpg)
 
-#### Welcome to the Python Personalized Movie Recs app. If you're in need of a movie recommendation, this is the tool for you!
+### Welcome to the Python Personalized Movie Recs app. If you're in need of a movie recommendation, this is the tool for you!
 
 ------------
 
@@ -40,7 +40,7 @@ This tool uses movie information from the **TMDB API,** so you will need to set 
 ![Python Line Break - sendgrid](https://user-images.githubusercontent.com/84421118/123558461-58b6ab80-d764-11eb-8ed4-e2f6c1af6007.png)
 
 ## Configuring Email Integration
-Create a **SendGrid **account via https://signup.sendgrid.com/ and generate an API key. *You will then need to store this API key later in a .env file.*
+Create a **SendGrid** account via https://signup.sendgrid.com/ and generate an API key. *You will then need to store this API key later in a .env file.*
 
 Once setting up your account, select **Email API** and create your own **Dynamic Template**. Make note of the **Template ID,** as you will need to store this in your .enc file later. 
 
@@ -132,7 +132,7 @@ Lastly, please note that this repo has been integrated with **Code Climate** to 
 ![Python Line Break - usage](https://user-images.githubusercontent.com/84421118/123558472-7257f300-d764-11eb-8270-a50705d5074d.png)
 
 
-## Running the App
+## Running the App in the Command Line
 
 After following the above directions, you're ready to run the application and get your personalized movie reccomendation!
 
@@ -180,6 +180,34 @@ The app will then generate your first recommendation! If you are not happy with 
 
 After your recommendation is finalized, you will be asked if you would like an **email receipt** of your recommendation. If the answer is yes, you will be prompted to enter your email address, then you will receive an email receipt of your personalized recommendation.
 
+![Python Line Break - GUI Usage](https://user-images.githubusercontent.com/84421118/123884473-4fbb0b00-d919-11eb-8b6b-0efbdb6b848f.png)
+
+
+## Running the Web App
+
+In addition to running our *Python Personalized Movie Recs* tool in the command line, you can also run it using a **Graphical User Interphase (GUI)**. To use our tool in a GUI, enter the below commands in your command line based on your computer choice (mac vs windows):
+
+**For Mac OS:**
+```
+FLASK_APP=web_app.py flask run
+```
+
+**For Windows OS:**
+```
+export FLASK_APP=web_app.py
+flask run
+```
+
+>*NOTE: if `export` doesn't work for you, try `set` instead*
+
+Once you run the above commands, the command line will give you a **URL** (i.e. http://127.0.0.1:5000/) that you can then copy and paste into your browser. That URL will then take you to our tool in a web app.
+
+Once you open the web app, click the **"Movie Form"** in the top right hand corner of your screen to navigate to your user inputs section. Enter a genre, whether you 2ant a new movie, and whether you want a blockbuster, and then hit **submit.** 
+
+> Note that similarly to when you run the tool in the command line, a recent film is defined as a film that has been released within the past two years, and a blockbuster is defined as a film with a 7+ rating according to TMDB.
+
+The tool will then recommend a movie for you! If you are unhappy with your selection, you can select **"Need Another?"** to generate a new movie recommendation. 
+
 
 ![Python Line Break - Accreditation](https://user-images.githubusercontent.com/84421118/123558491-87cd1d00-d764-11eb-8049-6ef25facd1eb.png)
 
@@ -201,15 +229,6 @@ This repo uses an MIT license
 
 ![Python Line Break - enjoy](https://user-images.githubusercontent.com/84421118/123558539-c82c9b00-d764-11eb-92c8-ba2ab87bf703.png)
 
-### Enjoy your Python Personalized Movie Reccomendation!
+### Enjoy your Python Personalized Movie Recomendation!
 
 
-## Running the Web App
-
-# Activate Flask
-# For Mac OS:
-FLASK_APP=web_app.py flask run
-# For Windows OS:
-export FLASK_APP=web_app.py
-flask run
-# **if `export` doesn't work for you, try `set` instead
