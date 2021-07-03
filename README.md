@@ -123,7 +123,7 @@ Please also note that the repo incorporates a Continuous Integration service cal
 
 > https://www.travis-ci.com/
 
-Lastly, please note that this repo has been integrated with **Code Climate** to run checks on pull requests. While nothing is needed on the user's end, you can integrate Code Climate on your end by creating a account and linking it to your GitHub repo:
+Lastly, please note that this repo has been integrated with **Code Climate** to run checks on pull requests. While nothing is needed on the user's end, you can integrate Code Climate on your end by creating an account and linking it to your GitHub repo:
 
 > https://codeclimate.com/oss/dashboard
 
