@@ -145,7 +145,7 @@ After you have completed the below list, you're ready to run the tool:
 >[ ] Set up your SendGrid account and created a dynamic email template <br />
 >[ ] Configured your environment variables<br />
 
-To run the game, enter the following command:
+To run the tool, enter the following command:
 
 
 ```
