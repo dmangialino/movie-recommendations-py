@@ -42,7 +42,7 @@ This tool uses movie information from the **TMDB API,** so you will need to set 
 ## Configuring Email Integration
 Create a **SendGrid** account via https://signup.sendgrid.com/ and generate an API key. *You will then need to store this API key later in a .env file.*
 
-Once setting up your account, select **Email API** and create your own **Dynamic Template**. Make note of the **Template ID,** as you will need to store this in your .enc file later. 
+Once setting up your account, select **Email API** and create your own **Dynamic Template**. Make note of the **Template ID,** as you will need to store this in your .env file later. 
 
 Aftre creating the Dynamic Template, select **Add Version**, then select **Blank Template**, and then select **Code Editor**.
 
