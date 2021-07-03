@@ -136,7 +136,7 @@ Lastly, please note that this repo has been integrated with **Code Climate** to 
 
 After following the above directions, you're ready to run the application and get your personalized movie recommendation!
 
-After you have completed the below list, you're ready to run the game:
+After you have completed the below list, you're ready to run the tool:
 >[ ]  Downloaded the repo to your local computer <br />
 >[ ] Navigated to the repo in the command line <br />
 >[ ] Setup your virtual environment <br />
