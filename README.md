@@ -44,7 +44,7 @@ Create a **SendGrid** account via https://signup.sendgrid.com/ and generate an A
 
 Once setting up your account, select **Email API** and create your own **Dynamic Template**. Make note of the **Template ID,** as you will need to store this in your .env file later. 
 
-Aftre creating the Dynamic Template, select **Add Version**, then select **Blank Template**, and then select **Code Editor**.
+After creating the Dynamic Template, select **Add Version**, then select **Blank Template**, and then select **Code Editor**.
 
 Navigate to the **Code** page of the Dynamic Template, and paste the below code:
 
